@@ -1,0 +1,736 @@
+<title>이직 준비 로드맵 — 백엔드 개발자 6년차</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg: #edf0f4;
+    --surface: #ffffff;
+    --surface-2: #f4f6f9;
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --line: #d8dee6;
+    --accent: #b3790a;
+    --accent-strong: #8a5d07;
+    --accent-soft: #f3e3c2;
+    --good: #2f8558;
+    --good-soft: #e0f0e7;
+    --radius: 10px;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1620;
+      --surface: #161f2c;
+      --surface-2: #1c2732;
+      --ink: #e7ebf1;
+      --muted: #93a0b2;
+      --line: #2b3646;
+      --accent: #e0a83a;
+      --accent-strong: #f0be5c;
+      --accent-soft: #3a2f14;
+      --good: #4cae7d;
+      --good-soft: #16342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1620;
+    --surface: #161f2c;
+    --surface-2: #1c2732;
+    --ink: #e7ebf1;
+    --muted: #93a0b2;
+    --line: #2b3646;
+    --accent: #e0a83a;
+    --accent-strong: #f0be5c;
+    --accent-soft: #3a2f14;
+    --good: #4cae7d;
+    --good-soft: #16342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #edf0f4;
+    --surface: #ffffff;
+    --surface-2: #f4f6f9;
+    --ink: #1c2430;
+    --muted: #5b6675;
+    --line: #d8dee6;
+    --accent: #b3790a;
+    --accent-strong: #8a5d07;
+    --accent-soft: #f3e3c2;
+    --good: #2f8558;
+    --good-soft: #e0f0e7;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-strong); }
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 2.75rem 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+  }
+
+  /* ---- Header ---- */
+  header.top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .heading h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin: 0 0 0.35rem;
+    text-wrap: balance;
+    letter-spacing: 0.01em;
+  }
+  .heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 46ch;
+  }
+  .ring {
+    --pct: 0;
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--line) 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ring::before {
+    content: "";
+    position: absolute;
+  }
+  .ring-inner {
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .ring-inner strong {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+  }
+  .ring-inner span {
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .stat-chip {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+  .stat-chip b {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--ink);
+    font-size: 0.95rem;
+  }
+
+  /* ---- Focus callout ---- */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+  }
+  .callout h2 {
+    margin: 0 0 0.6rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+  .callout ul {
+    margin: 0;
+    padding-left: 1.15rem;
+  }
+  .callout li { margin: 0.3rem 0; }
+  .callout li span.tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-right: 0.4rem;
+  }
+
+  /* ---- Section shell ---- */
+  section h2.section-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  section h2.section-title .count {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ---- Route track ---- */
+  .track {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-left: 2px solid var(--line);
+    margin-left: 7px;
+  }
+  .stop {
+    position: relative;
+    padding: 0 0 1.6rem 1.9rem;
+  }
+  .stop:last-child { padding-bottom: 0; }
+  .stop-marker {
+    --pct: 0;
+    position: absolute;
+    left: -8px;
+    top: 0.35rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) calc(var(--pct) * 1%), var(--surface-2) 0);
+    box-shadow: 0 0 0 3px var(--bg);
+  }
+  .stop-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.95rem 1.15rem;
+  }
+  .stop-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    cursor: pointer;
+    list-style: none;
+  }
+  .stop-head::-webkit-details-marker { display: none; }
+  .stop-head h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 650;
+  }
+  .stop-head .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+  .pct-pill {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.75rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--muted);
+  }
+  .pct-pill.done { background: var(--good-soft); color: var(--good); }
+  .chevron {
+    color: var(--muted);
+    transition: transform 0.15s ease;
+  }
+  details[open] .chevron { transform: rotate(90deg); }
+
+  .bar {
+    height: 5px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    margin-top: 0.7rem;
+    overflow: hidden;
+  }
+  .bar > i {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    border-radius: 999px;
+  }
+
+  .item-list {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .item-list li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+  }
+  .item-list .box {
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 4px;
+    border: 1.5px solid var(--line);
+    margin-top: 0.15rem;
+  }
+  .item-list li.done .box {
+    background: var(--good);
+    border-color: var(--good);
+    position: relative;
+  }
+  .item-list li.done .box::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 1px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--surface);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .item-list li.done span.txt { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+  .item-list li.pending span.txt { color: var(--ink); }
+  .item-list .note { display: block; color: var(--muted); font-size: 0.82rem; margin-top: 0.15rem; }
+
+  /* ---- Study progress grid ---- */
+  .study-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.9rem;
+  }
+  .study-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.9rem 1rem;
+  }
+  .study-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+  }
+  .study-card h4 em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ---- Companies ---- */
+  .hyundai-note {
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 0.9rem 1.1rem;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+  }
+  .co-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .co-groups h4 {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 0.55rem;
+  }
+  .co-groups ul { margin: 0; padding-left: 1.1rem; }
+  .co-groups li { margin: 0.3rem 0; font-size: 0.9rem; }
+  .co-groups .tag {
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+
+  /* ---- Table ---- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; min-width: 560px; }
+  th, td { text-align: left; padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:last-child, td:last-child { white-space: normal; }
+  thead th { background: var(--surface-2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* ---- Timeline ---- */
+  .timeline { display: flex; flex-direction: column; gap: 0.6rem; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-row .when { font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-strong); }
+
+  a.repo-link {
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+  }
+
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  @media (max-width: 600px) {
+    header.top { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="heading">
+      <h1>이직 준비 로드맵</h1>
+      <p>Java/Spring 백엔드 6년차 · E-커머스 도메인 유지, 규모·처우 상승 목표. 커머스웨어 재직 중 진행.</p>
+    </div>
+    <div style="position:relative;">
+      <div class="ring" style="--pct:41"><div class="ring-inner"><strong>41%</strong><span>완료</span></div></div>
+    </div>
+  </header>
+
+  <div class="stat-row">
+    <span class="stat-chip">완료 <b>13</b></span>
+    <span class="stat-chip">진행 필요 <b>19</b></span>
+    <span class="stat-chip">전체 항목 <b>32</b></span>
+    <span class="stat-chip">현재 단계 <b>1~2주차</b></span>
+  </div>
+
+  <div class="callout">
+    <h2>지금 바로 할 일</h2>
+    <ul>
+      <li><span class="tag">1</span>원티드/리멤버 등 이력서 빌더에 최신 내용 동기화</li>
+      <li><span class="tag">4</span>LinkedIn 프로필을 career-description 기준으로 최신화</li>
+      <li><span class="tag">4</span>기술 블로그 최근 활동 확인, 필요하면 글 1~2개 추가</li>
+      <li><span class="tag">3</span>타겟 회사 공고 스캔 시작 (원티드/사람인/잡코리아)</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2 class="section-title">체크리스트 진행 상황 <span class="count">9개 카테고리</span></h2>
+    <div class="track">
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:100"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>0 · 사전 완료 항목</h3>
+              <div class="meta"><span class="pct-pill done">5 / 5</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:100%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">GitHub 저장소 정리</span></li>
+              <li class="done"><span class="box"></span><span class="txt">career-description 사이드 프로젝트명 오탈자 정리</span></li>
+              <li class="done"><span class="box"></span><span class="txt">Fitness In Service 소개 자료 초안</span></li>
+              <li class="done"><span class="box"></span><span class="txt">GitHub 프로필 README 등록</span></li>
+              <li class="done"><span class="box"></span><span class="txt">Showcase 노출 위치 결정 — A안(신규 public repo + pin) 확정</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:75"></div>
+        <div class="stop-card">
+          <details open>
+            <summary class="stop-head">
+              <h3>1 · 이력서 / 경력기술서</h3>
+              <div class="meta"><span class="pct-pill">3 / 4</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:75%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">정량 성과 → 정성적 스코프/영향 중심으로 방향 전환</span></li>
+              <li class="done"><span class="box"></span><span class="txt">겹치는 재직기간(호주 시스템 구축) 정리</span></li>
+              <li class="done"><span class="box"></span><span class="txt">재입사(2025.11) 사유 답변안 정리</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">원티드/리멤버 등 이력서 빌더 동기화<span class="note">플랫폼마다 포맷 달라 복붙만으로 안 될 수 있음</span></span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>2 · 기술 인터뷰 준비</h3>
+              <div class="meta"><span class="pct-pill">0 / 5</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:0%"></i></div>
+            <ul class="item-list">
+              <li class="pending"><span class="box"></span><span class="txt">CS 기본기 (네트워크 · OS · DB)</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">Spring/Java 심화 (Batch, MyBatis vs JPA, 트랜잭션 전파)</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">시스템 설계 — Fitness In Service·커머스웨어 사례 기반</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">코딩테스트 — 프로그래머스/백준<span class="note">상세 계획 → study-plan.md</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">AI 활용 관련 질문 대비 (멀티 에이전트 워크플로우 1분 설명)</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:33"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>3 · 타겟팅 &amp; 회사 리서치</h3>
+              <div class="meta"><span class="pct-pill">1 / 3</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:33%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">방향 결정 — 이커머스 유지, 규모·처우 상승</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">공고 스캔 (원티드/로켓펀치/리멤버) — 지원 우선순위 리스트업</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">타겟 회사 기술 블로그 최근 글 1~2개씩 읽기</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:60"></div>
+        <div class="stop-card">
+          <details open>
+            <summary class="stop-head">
+              <h3>4 · 온라인 프레즌스 마무리</h3>
+              <div class="meta"><span class="pct-pill">3 / 5</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:60%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">GitHub 프로필 README 등록</span></li>
+              <li class="done"><span class="box"></span><span class="txt">Showcase repo 생성 + README 푸시 — <a class="repo-link" href="https://github.com/wlsdlstjdwls/fitness-in-service-showcase" target="_blank" rel="noopener">fitness-in-service-showcase</a></span></li>
+              <li class="done"><span class="box"></span><span class="txt">위 repo 프로필 pin 처리</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">LinkedIn 프로필 최신화</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">기술 블로그(70만+ 조회) 최근 활동 확인</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>5 · 네트워킹</h3>
+              <div class="meta"><span class="pct-pill">0 / 2</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:0%"></i></div>
+            <ul class="item-list">
+              <li class="pending"><span class="box"></span><span class="txt">타겟 회사 재직자와 스몰토크 (사내 분위기·레퍼럴)</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">레퍼럴 가능한 이전 동료 리스트업</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:50"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>6 · 지원 프로세스 관리</h3>
+              <div class="meta"><span class="pct-pill">1 / 2</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:50%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">지원 트래커 생성 — application-tracker.md</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">서류 합격 후 면접 후기(잡플래닛·블라인드) 확인</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>7 · 처우 협상</h3>
+              <div class="meta"><span class="pct-pill">0 / 3</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:0%"></i></div>
+            <ul class="item-list">
+              <li class="pending"><span class="box"></span><span class="txt">현재 연봉/처우 명확히 정리</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">희망 연봉 레인지 설정</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">복수 오퍼 비교 기준 정하기</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+      <div class="stop">
+        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>8 · 재직 중 이직 시 주의사항</h3>
+              <div class="meta"><span class="pct-pill">0 / 3</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:0%"></i></div>
+            <ul class="item-list">
+              <li class="pending"><span class="box"></span><span class="txt">평판조회(레퍼런스체크) 대비</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">퇴사 통보 시점 · 인수인계 계획</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">회사 코드/문서 반출 금지 재확인</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">기술 학습 진도 <span class="count">study-plan.md</span></h2>
+    <div class="study-grid">
+      <div class="study-card"><h4>네트워크 <em>0/3</em></h4><div class="bar"><i style="width:0%"></i></div></div>
+      <div class="study-card"><h4>OS <em>0/3</em></h4><div class="bar"><i style="width:0%"></i></div></div>
+      <div class="study-card"><h4>DB <em>0/3</em></h4><div class="bar"><i style="width:0%"></i></div></div>
+      <div class="study-card"><h4>자료구조/알고리즘 <em>0/2</em></h4><div class="bar"><i style="width:0%"></i></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">타겟 회사 <span class="count">target-companies.md</span></h2>
+    <div class="hyundai-note">
+      <strong>현대백화점 커넥션</strong> — career-description에 "현대백화점 NCP 구축(더현대·투홈 플랫폼 통합)" 이력이 이미 있음. 현대이지웨어·현대홈쇼핑 계열 IT 지원 시 가장 구체적인 근거가 되므로 최우선 후보.
+    </div>
+    <div class="co-groups">
+      <div>
+        <h4>A. 대기업 그룹 IT 계열사</h4>
+        <ul>
+          <li>신세계아이앤씨 <span class="tag">SSG닷컴</span></li>
+          <li>롯데정보통신 <span class="tag">롯데온</span></li>
+          <li>현대이지웨어 / 현대홈쇼핑 계열 <span class="tag">본인 이력 직결</span></li>
+          <li>CJ올리브네트웍스 <span class="tag">올리브영</span></li>
+          <li>GS ITM <span class="tag">GS리테일</span></li>
+          <li>삼성SDS <span class="tag">대형 SI</span></li>
+          <li>LG CNS</li>
+        </ul>
+      </div>
+      <div>
+        <h4>B. 대형 커머스/플랫폼</h4>
+        <ul>
+          <li>쿠팡</li>
+          <li>네이버 (커머스·파이낸셜)</li>
+          <li>우아한형제들</li>
+          <li>카카오 계열</li>
+        </ul>
+      </div>
+      <div>
+        <h4>C. 성장 커머스 플랫폼</h4>
+        <ul>
+          <li>무신사 · 컬리 · 오늘의집</li>
+          <li>야놀자 · 카카오스타일(지그재그)</li>
+          <li>에이블리 · 브랜디</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">지원 트래커 <span class="count">application-tracker.md</span></h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>회사</th><th>공고일</th><th>지원일</th><th>현재 단계</th><th>결과</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>현대이지웨어 / 현대홈쇼핑 계열 IT</td><td>-</td><td>-</td><td>-</td><td>-</td><td>현대백화점 NCP 구축 이력과 직결 — 우선순위 높음</td></tr>
+          <tr><td>신세계아이앤씨</td><td>-</td><td>-</td><td>-</td><td>-</td><td>SSG닷컴 등 그룹 커머스 시스템</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">면접 예상 Q&amp;A <span class="count">interview-prep-notes.md</span></h2>
+    <div class="track" style="border-left:none; margin-left:0;">
+      <div class="stop" style="padding-left:0;">
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head"><h3 style="font-size:0.95rem;">호주 시스템 구축(2019.03–2019.12)이 재직 기간과 겹치는데?</h3><span class="chevron">▸</span></summary>
+            <p style="margin:0.8rem 0 0; font-size:0.9rem; color:var(--muted);">커머스웨어 재직 중 수행한 고객사 프로젝트(해외 홈쇼핑向)로 확인됨. 개인 워홀(2024.12–2025.11)과는 무관 — career-description 수정 불필요.</p>
+          </details>
+        </div>
+      </div>
+      <div class="stop" style="padding-left:0;">
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head"><h3 style="font-size:0.95rem;">왜 퇴사했다가 다시 재입사했나?</h3><span class="chevron">▸</span></summary>
+            <p style="margin:0.8rem 0 0; font-size:0.9rem; color:var(--muted);">"사람과 조직문화가 잘 맞았고, 아직 더 배울 게 많다고 생각해서 돌아왔습니다." — 정리된 답변안 완비.</p>
+          </details>
+        </div>
+      </div>
+      <div class="stop" style="padding-left:0;">
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head"><h3 style="font-size:0.95rem;">재입사할 만큼 좋았다면서 왜 또 이직하려고 하나?</h3><span class="chevron">▸</span></summary>
+            <p style="margin:0.8rem 0 0; font-size:0.9rem; color:var(--muted);">"사람·문화는 만족하지만, 처우와 성장 기회 면에서는 지금보다 더 나아갈 곳이 있다고 판단했습니다." — 재입사 이유(사람·문화)와 이직 이유(처우·성장)를 별개 축으로 분리해 설명.</p>
+            <p style="margin:0.5rem 0 0; font-size:0.85rem; color:var(--accent-strong);">"성장/커리어 천장" 구체 예시 3개 틀 작성됨 — 실제 사례로 채우는 것만 남음 (확인 필요)</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">제안 타임라인</h2>
+    <div class="timeline">
+      <div class="timeline-row"><div class="when">1~2주차</div><div>온라인 프레즌스 마무리, 이력서/경력기술서 보강</div></div>
+      <div class="timeline-row"><div class="when">3~4주차</div><div>타겟 리서치, 지원 시작, CS/시스템설계 학습 시작</div></div>
+      <div class="timeline-row"><div class="when">5~8주차</div><div>코딩테스트/면접 준비 병행, 네트워킹</div></div>
+      <div class="timeline-row"><div class="when">상시</div><div>지원 트래커 관리, 오퍼 나오면 처우 협상</div></div>
+    </div>
+  </section>
+
+  <footer>career-move 로컬 대시보드 · private repo · 연봉 등 민감 수치는 별도 관리</footer>
+
+</div>
