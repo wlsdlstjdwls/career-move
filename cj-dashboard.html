@@ -158,7 +158,7 @@
     <span class="stat-chip urgent">CJ ONE 마감 <b>D-10</b> (07.31)</span>
     <span class="stat-chip urgent">올리브영 AI-First 마감 <b>D-19</b> (08.09)</span>
     <span class="stat-chip">올리브영 테크플랫폼센터 대규모채용 <b>상시</b></span>
-    <span class="stat-chip">리서치 갱신일 <b>2026.07.21</b></span>
+    <span class="stat-chip">리서치 갱신일 <b>2026.07.22</b></span>
   </div>
 
   <div class="callout">
@@ -222,6 +222,8 @@
           <ul>
             <li>CS 기본기·시스템설계 소리 내어 답변 연습</li>
             <li>Kubernetes 기초 개념 학습 — 필수요건에 두 번 명시됨(원문 확인 완료), 최소 "개념은 안다" 수준 필요</li>
+            <li>(신규) Ktor 기본 개념 가볍게 숙지 — CJ ONE 일부 팀 Kotlin/Ktor 스택 확인됨, 질문 대비</li>
+            <li>(신규) CJ ONE 앱 직접 실행해서 최신 UI·캐릭터명("원스터" 등) 재확인, 개방형 멤버십·CJ PAY 우리통장 최신 뉴스 숙지</li>
           </ul>
         </div>
       </div>
@@ -264,6 +266,7 @@
         <p class="sub">근무지 서울 용산구 CJ올리브네트웍스 본사 · 전형: 서류전형→코딩테스트→1차면접→CFT(인성검사)→2차면접→평판조회·처우협의→채용검진→최종합격</p>
         <h5>기술스택 (공고 원문)</h5>
         <div class="stack-tags"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>Spring Data JPA</span><span>PostgreSQL/Oracle/MySQL</span><span>Redis</span><span>GitLab</span><span>ArgoCD</span><span>AWS</span><span>Kubernetes</span><span>Docker</span></div>
+        <blockquote>⚠️ 2026.07.22 추가 발견: 헤드헌팅 공고(비즈니스피플)에서 <strong>"CJ ONE 백엔드 엔지니어"가 Kotlin/Ktor + K8s(EKS) + Kafka + DynamoDB/Cassandra</strong> 스택으로 명시된 걸 확인. 이 공고와 recruit.cj.net 공고(Java/Spring)가 완전히 동일 팀인지는 미확인이나, CJ ONE 백엔드 조직 내 Java/Spring·Kotlin/Ktor 팀이 공존/전환 중일 가능성 있음 — 지원 요건 자체엔 영향 없으나 면접에서 Kotlin 관련 질문 나올 수 있어 Ktor 기본 개념(코루틴 기반 비동기, Spring과 차이) 정도는 가볍게 숙지 권장.</blockquote>
         <div class="table-scroll">
           <table>
             <thead><tr><th>요건</th><th>본인 현황</th><th>대응</th></tr></thead>
@@ -355,14 +358,17 @@
 
 CJ ONE은 올리브영, 뚜레쥬르, 온스타일에서 출발해 지금은 메가커피, 신세계면세점 등 다양한 제휴사를 아우르는, 3천만 명이 넘는 사용자의 통합 멤버십·포인트 시스템입니다. 제가 다뤄온 고객 자산 도메인의 확장판이라 할 만큼 맞닿아 있다고 느꼈습니다. 여러 브랜드와 채널에 걸친 대규모 트랜잭션을 안정적으로 처리하는 시스템을 만드는 일에 지금까지의 경험을 이어가고 싶어 지원했습니다.
 
+CJ올리브네트웍스가 뉴비전에서 밝힌 "CJ ONE 슈퍼앱 진화"는, 이마트24·야놀자 같은 비계열 제휴 확대와 CJ PAY 우리통장 같은 핀테크 결합에서 보듯 회원 인증·계정 체계가 단순 로그인을 넘어 여러 파트너사를 아우르는 신뢰 인프라로 커지는 과정이라고 이해했습니다.
+
 구체적으로는 PC몰 리뉴얼 프로젝트에서 응답속도를 최대 4~5초에서 1~2초대로 줄인 쿼리 튜닝·캐시 적용 경험, 그리고 기간계 시스템 고도화 프로젝트에서 AA 역할로 코어/공통 모듈을 설계하고 팀 전체에 ExtJS 교육을 진행한 기술 리딩 경험을 CJ ONE의 회원 서비스 플랫폼에도 적용할 수 있습니다. 개인 프로젝트 Fitness In Service에서 쌓은 인증/인가 이해도 마찬가지입니다. Spring Boot 멀티모듈 구조로 JWT 인증, Redis 세션, Kakao OAuth, Toss Payments 결제, SSE 실시간 알림까지 구현하고 AWS EC2·Docker·Nginx 환경에 직접 배포·운영한 경험은 CJ ONE의 회원 가입, 로그인, 계정 관리 업무에 바로 연결됩니다.
 
-입사 후에는 CJ ONE처럼 여러 브랜드와 채널이 얽힌 대규모 회원 시스템에서 작은 정책 변경에도 안정적으로 대응하는 코드와 테스트 구조를 만드는 데 기여하고 싶습니다. 최근 실무에 적용해온 LLM 기반 분석·자동화 경험(Claude, Gemini 등 멀티 AI 프로바이더 활용)을 백엔드 개발 생산성을 높이는 데에도 접목해보고 싶습니다.</div>
+입사 후에는 CJ ONE처럼 여러 브랜드와 채널이 얽힌 대규모 회원 시스템에서 작은 정책 변경에도 안정적으로 대응하는 코드와 테스트 구조를 만드는 데 기여하고 싶습니다. 저는 문제를 발견하면 선언에 그치지 않고 끝까지 실행해 결과로 증명해온 개발자입니다. CJ가 강조하는 '하고잡이'처럼, 앞으로도 어려운 과제 앞에서 문제 제기에 머물지 않고 직접 실행해 결과로 보여주는 방식으로 CJ ONE의 성장에 기여하고 싶습니다. 최근 실무에 적용해온 LLM 기반 분석·자동화 경험(Claude, Gemini 등 멀티 AI 프로바이더 활용)을 백엔드 개발 생산성을 높이는 데에도 접목해보고 싶습니다.</div>
 
         <h5>윤문 처리 내역</h5>
         <ul>
           <li>변경률 약 20%(문항2 기준) · 등급 A · 자체검증 6/6 통과</li>
           <li>문두 접속사("또한"·"나아가") 제거, "~생각합니다" 3연속 반복 정리, 연결어미 뒤 불필요한 쉼표 정리 등 — 사실관계(회사명/기간/프로젝트명/성과 수치/기술스택)는 100% 원형 보존</li>
+          <li>⚠️ 2026.07.22 "슈퍼앱 진화"·"하고잡이" 문장 추가 삽입(리서치 반영) — <strong>이 두 문장은 humanize-korean 재검증(AI티·윤문 등급) 전 상태</strong>. 최종 제출 전 나머지 문단과 톤이 이어지는지, "하고잡이" 표현이 과하지 않은지 직접 재검토 필요</li>
         </ul>
         <span class="doc-source">recruit.cj.net 원문 직접 확인 · career-description README.md · humanize-korean v1.5 fast 모드 (run_id: 2026-07-21-001)</span>
       </div>
@@ -394,6 +400,30 @@ CJ ONE은 올리브영, 뚜레쥬르, 온스타일에서 출발해 지금은 메
       </div>
     </details>
 
+    <details class="doc" open>
+      <summary><span>하고잡이 · DX/AX · 사업방향 · 앱 · 직무범위 리서치 (2026.07.22)</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <h5>"하고잡이" — CJ그룹 인재상</h5>
+        <p>2025~2026년 채용에서 <strong>"선언에 그치지 않고 결과로 증명해내는 사람(We Who Prove It)"</strong>로 재정의됨. CJ올리브네트웍스는 이 인재상을 <strong>AX(AI Transformation) 채용과 직접 연결</strong>("AX 혁신 주도할 '하고잡이' 찾습니다"). 다만 그룹 전체 채용 브랜딩 용어라 CJ올리브네트웍스 자체 채용 페이지엔 등장하지 않음 — 자소서·면접에서 <strong>1회만 자연스럽게 인용</strong>, 이후는 "결과로 증명"으로 풀어쓸 것.</p>
+        <h5>DX와 AX — CJ올리브네트웍스 맥락</h5>
+        <p>2024.05 뉴비전 3대 과제: ① CJ그룹 DX 선도 ② 대외사업 경쟁력 강화 ③ <strong>CJ ONE 슈퍼앱 진화</strong>. AX는 "AI를 활용한 산업/업무 전환"으로 AI팩토리 서비스에서 <strong>"AX 통합서비스"</strong>라는 공식 카테고리명으로 사용 중. DX/AX를 회사가 명시적으로 구분 정의한 1차 문서는 미확인 — 단정적으로 말하지 말 것.</p>
+        <h5>CJ ONE 사업 방향성 (2025~2026 최신 뉴스)</h5>
+        <ul>
+          <li>회원수 3,100만 돌파(2025.01), <strong>개방형 멤버십</strong>으로 이마트24·야놀자·CU·HD현대오일뱅크 등 비계열 제휴 확대(약 60여 곳, 2025.04)</li>
+          <li><strong>핀테크 확장</strong>: 우리은행과 "CJ PAY 우리통장" 출시(혁신금융서비스 샌드박스, 최대 3% 금리·2% 적립)</li>
+          <li>AI 개인화: CJ올리브네트웍스가 Braze·Amplitude 리셀링 파트너십으로 CJ ONE에 행동 데이터 기반 개인화 메시징 적용 중</li>
+          <li>"CJ ONE AD"(트래픽 기반 광고사업)로 플랫폼 사업구조 전환 방향 명시</li>
+        </ul>
+        <h5 style="color:var(--bad)">★ 기술스택 관련 중요 발견</h5>
+        <p>헤드헌팅 공고(비즈니스피플, BR250930A00183/BR251111A00211)에서 <strong>"CJ ONE 백엔드 엔지니어"가 Kotlin/Ktor + K8s(EKS) + Kafka + PostgreSQL + DynamoDB/Cassandra</strong> 스택으로 명시됨. recruit.cj.net 공고(Java/Spring)와 동일 팀인지는 미확인이나 CJ ONE 조직 내 스택 다양성/전환 가능성 시사 — 위 "재직자 평판"의 "레거시 위주" 이미지와는 결이 다른 신호.</p>
+        <h5>CJ ONE 앱 기능 분석</h5>
+        <p>앱스토어 평점 4.5/5(약 7,800개). 핵심 기능: 포인트 적립/사용, 쿠폰, 기프트카드, ONE워크(걸음수 기반 포인트), 생체인증(지문·얼굴) 간편로그인, 본인인증 회원가입. CJ온스타일 등은 "포인트받기 버튼 수동 확인" 구조(반품·취소 대비 정산 정합성 설계로 추정). <strong>"원스터" 캐릭터 정확 명칭은 미확인 — 자소서·PT 전 앱 직접 실행해 재확인 필요</strong>.</p>
+        <h5>회원서비스 직무 — 추정 하위 업무</h5>
+        <p>회원 가입/탈퇴/재가입 API · 소셜로그인 연동 · 생체인증(확인됨) · 본인인증(확인됨) · 휴면계정 관리 · 개인정보 동의관리 · JWT/SSO 세션 관리 · 대용량 트래픽 처리(확인됨) · 부정계정 탐지 · 제휴사 회원 식별/포인트 매핑. 대부분 업계 공통 패턴 기반 <strong>추정</strong> — 면접에서 단정하지 말고 "제 나름대로 추정"이라는 톤 유지.</p>
+        <span class="doc-source">cj-youtube-hagojabi-dxax-research.md · cj-one-business-app-role-research.md · interview-prep-notes.md</span>
+      </div>
+    </details>
+
     <details class="doc">
       <summary><span>재직자 평판 리서치 (잡플래닛·블라인드)</span><span class="chevron">▸</span></summary>
       <div class="doc-body">
@@ -415,6 +445,7 @@ CJ ONE은 올리브영, 뚜레쥬르, 온스타일에서 출발해 지금은 메
           <li>"기술 환경이 아직도 2000년대 초반 수준", "Docker 등 현대적 개발 인프라 부재"라는 구체적 부정 후기 다수</li>
           <li>자체 기술 블로그 방치(2022.07 이후 업데이트 없음) — 위 커뮤니티 평판과 정합적</li>
           <li>긍정 신호: "희소 기술 보유자에게 공격적 채용 제의", 2026년 "핵심분야 기술역량 강화" 뉴비전 공식 언급</li>
+          <li>2026.07.22 업데이트: CJ ONE 백엔드 일부 팀이 Kotlin/Ktor+K8s+Kafka 등 현대적 스택을 쓰는 헤드헌팅 공고 확인 — 위 "레거시" 평판이 조직 전체를 균일하게 대표하진 않을 가능성. 상세는 위 "하고잡이·DX/AX·사업방향" 블록 참고</li>
         </ul>
         <h5>우려 사항</h5>
         <ul>
