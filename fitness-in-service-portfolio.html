@@ -1,269 +1,247 @@
-<title>Fitness In Service — 프로젝트 소개서</title>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>Fitness In Service — 포트폴리오</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
-  :root {
-    --bg: #f4f6f8;
-    --surface: #ffffff;
-    --surface-2: #eef1f5;
-    --ink: #16202b;
-    --muted: #57626f;
-    --line: #dde2e8;
-    --accent: #0f6e5c;
-    --accent-strong: #0a5346;
-    --accent-soft: #dcf0ea;
-    --blue: #2454b3;
-    --blue-soft: #e2eaf9;
-    --radius: 12px;
-    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --card2:#f7f8fa; --line:rgba(23,32,42,.10); --line2:rgba(23,32,42,.06);
+    --ink:#1b2430; --ink2:#586172; --muted:#98a1af;
+    --accent:#127c72; --accent-ink:#0d6a61; --accent-soft:#e7f2f0; --accent-line:rgba(18,124,114,.22);
+    --r:16px; --rs:11px; --shadow:0 1px 2px rgba(23,32,42,.04),0 8px 24px -14px rgba(23,32,42,.14);
+    --font:"Pretendard","Pretendard Variable",-apple-system,BlinkMacSystemFont,system-ui,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono",Consolas,Menlo,monospace;
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-  a { color: var(--blue); }
-  .wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.75rem 4rem; display: flex; flex-direction: column; gap: 2rem; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.62;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:880px;margin:0 auto;padding:2.6rem 1.9rem 3rem;display:flex;flex-direction:column;gap:2.1rem;}
+  .eyebrow{font-size:.7rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-ink);}
 
-  header.top { border-bottom: 3px solid var(--accent); padding-bottom: 1.3rem; }
-  header.top h1 { font-family: var(--font-display); font-weight: 700; font-size: 1.9rem; margin: 0 0 0.4rem; }
-  header.top .tagline { color: var(--muted); font-size: 0.98rem; margin: 0 0 0.8rem; }
-  header.top .meta-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
-  .badge { display: inline-flex; align-items: center; font-size: 0.78rem; font-weight: 700; padding: 0.28rem 0.75rem; border-radius: 999px; background: var(--accent-soft); color: var(--accent-strong); border: 1px solid #bfe3d8; }
-  .badge.blue { background: var(--blue-soft); color: var(--blue); border-color: #c3d5f5; }
-  .badge a { color: inherit; text-decoration: none; }
+  /* HERO */
+  .hero{display:flex;flex-direction:column;gap:.85rem;}
+  .hero .top{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+  .live{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:999px;padding:.2rem .65rem;}
+  .live .d{width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  .hero h1{margin:0;font-size:2.7rem;font-weight:800;letter-spacing:-.035em;line-height:1.05;}
+  .hero h1 b{display:block;font-weight:800;color:var(--accent);}
+  .hero .lead{margin:0;color:var(--ink2);font-size:1rem;max-width:60ch;}
+  .hero .chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.25rem;}
+  .c{font-size:.78rem;font-weight:600;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.32rem .8rem;}
+  .c.on{color:var(--accent-ink);background:var(--accent-soft);border-color:var(--accent-line);font-weight:700;}
 
-  .highlight-box { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: var(--radius); padding: 1.3rem 1.5rem; }
-  .highlight-box h2 { margin: 0 0 0.9rem; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-strong); font-weight: 800; }
-  .highlight-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-  .highlight-item { display: flex; gap: 0.7rem; align-items: flex-start; }
-  .highlight-item .num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; font-size: 0.82rem; display: flex; align-items: center; justify-content: center; }
-  .highlight-item h3 { margin: 0 0 0.25rem; font-size: 0.92rem; font-weight: 700; }
-  .highlight-item p { margin: 0; font-size: 0.84rem; color: var(--muted); }
+  h2.sh{margin:0;font-size:1.32rem;font-weight:800;letter-spacing:-.02em;}
+  .sec{display:flex;flex-direction:column;gap:1rem;}
+  .sec .hd{display:flex;flex-direction:column;gap:.2rem;}
+  .sec .hd p.sub{margin:0;font-size:.86rem;color:var(--muted);}
 
-  section h2.section-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin: 0 0 0.9rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--line); }
+  /* prose block */
+  .prose{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.35rem 1.5rem;box-shadow:var(--shadow);}
+  .prose p{margin:0 0 .8rem;font-size:.92rem;color:var(--ink2);line-height:1.72;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose strong{color:var(--ink);font-weight:700;}
+  .draft{margin-top:.9rem;font-size:.76rem;color:var(--accent-ink);background:var(--accent-soft);border:1px dashed var(--accent-line);border-radius:9px;padding:.55rem .8rem;}
 
-  .table-wrap { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
-  th, td { text-align: left; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
-  thead th { background: var(--surface-2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 700; }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:nth-child(even) { background: var(--surface-2); }
+  /* process pipeline */
+  .flowbar{display:grid;grid-template-columns:repeat(5,1fr);gap:.55rem;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--rs);padding:.85rem .8rem;box-shadow:var(--shadow);position:relative;}
+  .step .no{font-family:var(--mono);font-size:.68rem;font-weight:700;color:var(--accent);}
+  .step h4{margin:.2rem 0 .3rem;font-size:.9rem;font-weight:800;}
+  .step p{margin:0;font-size:.75rem;color:var(--muted);line-height:1.4;}
+  .flownote{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.2rem;}
+  .fn{font-size:.78rem;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.42rem .7rem;display:flex;gap:.45rem;align-items:baseline;}
+  .fn b{color:var(--accent-ink);font-weight:700;}
 
-  .diagram { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; }
-  .diagram-tier { display: flex; justify-content: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
-  .diagram-tier:last-child { margin-bottom: 0; }
-  .dbox { border: 1.5px solid var(--accent); background: var(--accent-soft); color: var(--accent-strong); border-radius: 8px; padding: 0.5rem 0.9rem; font-size: 0.82rem; font-weight: 700; text-align: center; min-width: 110px; }
-  .dbox.ext { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
-  .dbox.infra { border-color: var(--muted); background: var(--surface-2); color: var(--ink); font-family: var(--font-mono); font-weight: 600; font-size: 0.78rem; }
-  .arrow-down { text-align: center; color: var(--muted); font-size: 0.9rem; margin: 0.3rem 0; }
-  .diagram-label { text-align: center; font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+  /* principles */
+  .prin{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .pc{background:var(--card);border:1px solid var(--line);border-radius:var(--rs);padding:.95rem 1.1rem;box-shadow:var(--shadow);}
+  .pc h4{margin:0 0 .28rem;font-size:.9rem;font-weight:700;}
+  .pc p{margin:0;font-size:.82rem;color:var(--ink2);line-height:1.5;}
+  .pc code{font-family:var(--mono);font-size:.8em;color:var(--accent-ink);background:var(--accent-soft);border-radius:4px;padding:.02rem .3rem;}
 
-  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.3rem; }
-  .card + .card { margin-top: 0.8rem; }
-  .card h3 { margin: 0 0 0.5rem; font-size: 0.98rem; font-weight: 700; }
-  .card ul { margin: 0; padding-left: 1.2rem; }
-  .card li { margin: 0.35rem 0; font-size: 0.9rem; }
+  /* decision cards */
+  .dc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.25rem 1.1rem 1.35rem;position:relative;box-shadow:var(--shadow);}
+  .dc+.dc{margin-top:.8rem;}
+  .dc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:.7;border-radius:3px 0 0 3px;}
+  .dc .q{font-size:.98rem;font-weight:800;letter-spacing:-.015em;margin:0 0 .55rem;}
+  .dc .ln{display:grid;grid-template-columns:52px 1fr;gap:.35rem .7rem;font-size:.85rem;}
+  .dc .ln+.ln{margin-top:.35rem;}
+  .dc .lb{font-size:.72rem;font-weight:800;color:var(--muted);padding-top:.06rem;}
+  .dc .lb.j{color:var(--accent-ink);}
+  .dc .tx{margin:0;color:var(--ink2);line-height:1.5;}
+  .dc .tx strong{color:var(--ink);font-weight:700;}
+  code.i{font-family:var(--mono);font-size:.82em;color:var(--accent-ink);background:var(--accent-soft);border-radius:4px;padding:.02rem .3rem;}
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  /* arch */
+  .arch{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem 1.3rem;box-shadow:var(--shadow);}
+  .tl{text-align:center;font-size:.66rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.11em;margin-bottom:.5rem;}
+  .row{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;}
+  .nd{border-radius:10px;padding:.48rem .85rem;font-size:.8rem;font-weight:700;text-align:center;min-width:104px;line-height:1.2;}
+  .nd span{display:block;font-weight:500;font-size:.68rem;opacity:.72;margin-top:.06rem;}
+  .nd.api{background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--accent-line);}
+  .nd.cl{background:#eef1f6;color:#3f4a5c;border:1px solid var(--line);}
+  .nd.inf{background:var(--card2);color:var(--ink2);border:1px solid var(--line);font-family:var(--mono);font-weight:600;font-size:.7rem;min-width:0;}
+  .fl{text-align:center;color:var(--muted);font-size:.7rem;font-weight:700;margin:.5rem 0;}
 
-  .ai-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem 1.4rem; }
-  .ai-card h3 { margin: 0 0 0.6rem; font-size: 1rem; font-weight: 800; color: var(--accent-strong); display: flex; align-items: center; gap: 0.5rem; }
-  .ai-card p.desc { margin: 0 0 0.8rem; font-size: 0.88rem; color: var(--muted); }
-  .ai-card ul { margin: 0; padding-left: 1.2rem; }
-  .ai-card li { margin: 0.45rem 0; font-size: 0.9rem; }
-  .ai-card li strong { color: var(--ink); }
+  /* compact reference: stack + stats */
+  .ref{display:grid;grid-template-columns:1fr;gap:.9rem;}
+  .stk{display:flex;flex-direction:column;gap:.5rem;}
+  .srow{display:grid;grid-template-columns:110px 1fr;gap:.5rem .9rem;align-items:center;}
+  .srow .ct{font-size:.74rem;font-weight:700;color:var(--muted);}
+  .tags{display:flex;flex-wrap:wrap;gap:.35rem;}
+  .t{font-family:var(--mono);font-size:.73rem;font-weight:600;color:var(--ink2);background:var(--card2);border:1px solid var(--line2);border-radius:6px;padding:.2rem .48rem;}
+  .t.k{color:var(--accent-ink);border-color:var(--accent-line);background:var(--accent-soft);}
+  .statline{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;padding:.7rem 0 0;border-top:1px solid var(--line2);}
+  .statline .s{font-size:.82rem;color:var(--muted);}
+  .statline .s b{color:var(--ink);font-weight:800;font-size:.95rem;margin-right:.15rem;}
 
-  .stack-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .stack-tags span { font-family: var(--font-mono); font-size: 0.76rem; background: var(--blue-soft); color: var(--blue); border: 1px solid #c3d5f5; padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 700; }
+  /* cta */
+  .cta{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r);padding:1.25rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+  .cta .u{font-family:var(--mono);font-size:1rem;font-weight:800;color:var(--accent-ink);}
+  .cta .n{font-size:.78rem;font-weight:600;color:var(--ink2);margin-top:.15rem;}
+  .cta .go{font-size:.82rem;font-weight:800;color:#fff;background:var(--accent);border-radius:999px;padding:.55rem 1.15rem;white-space:nowrap;}
+  footer{text-align:center;color:var(--muted);font-size:.74rem;line-height:1.55;}
 
-  .link-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem 1.4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
-  .link-box .url { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700; }
-  .link-box .note { font-size: 0.8rem; color: var(--muted); }
-
-  footer { text-align: center; color: var(--muted); font-size: 0.76rem; padding-top: 1rem; border-top: 1px solid var(--line); }
-
-  @media print {
-    body { background: #fff; font-size: 12.5px; }
-    .wrap { max-width: 100%; padding: 0; gap: 1.3rem; }
-    .highlight-box, .diagram, .card, .ai-card, .link-box, .table-wrap { box-shadow: none; break-inside: avoid; }
-    section { break-inside: avoid; }
-    a { color: var(--ink); text-decoration: underline; }
+  @media print{
+    body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .wrap{max-width:100%;padding:0;gap:1.35rem;}
+    .prose,.step,.pc,.dc,.arch,.cta{box-shadow:none;break-inside:avoid;}
+    .sec,.prin,.flowbar{break-inside:avoid;}
   }
-  @page { margin: 16mm 14mm; }
-
-  @media (max-width: 640px) {
-    .highlight-grid, .two-col { grid-template-columns: 1fr; }
-  }
+  @page{margin:13mm 12mm;}
+  @media(max-width:680px){.flowbar,.prin{grid-template-columns:1fr 1fr;}.srow{grid-template-columns:1fr;}.hero h1{font-size:2.1rem;}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
 
-  <header class="top">
-    <h1>Fitness In Service</h1>
-    <p class="tagline">헬스장 통합 관리 플랫폼 — 센터·트레이너·회원·PT세션·급여·GX클래스·결제를 아우르는 Spring Boot 멀티모듈 백엔드 + 관리자 웹 + 회원 앱. 회사 업무 외 개인 시간에 기획부터 설계·개발·배포·운영까지 전 과정을 직접 수행 중인 실서비스입니다.</p>
-    <div class="meta-row">
-      <span class="badge">실서비스 운영 중</span>
-      <span class="badge blue"><a href="https://beta.fitness-trainer-assistant.ai.kr" target="_blank" rel="noopener">beta.fitness-trainer-assistant.ai.kr ↗</a></span>
-      <span class="badge">3개 저장소 · 1,700+ 커밋</span>
-      <span class="badge">1인 개발 · 설계~운영 전 과정</span>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="top"><span class="eyebrow">Backend · Personal Project</span><span class="live"><span class="d"></span>실서비스 운영 중</span></div>
+    <h1>Fitness In Service<b>혼자 기획하고 운영하는 헬스장 통합 관리 플랫폼</b></h1>
+    <p class="lead">요구사항 정의 · DB 설계 · API 개발 · 배포 · 운영까지 전 과정을 직접 수행하며, <strong style="color:var(--ink);font-weight:700">어떻게 설계하고 무엇을 근거로 결정하는지</strong>를 보여주는 프로젝트입니다.</p>
+    <div class="chips">
+      <span class="c on">Java 17 · Spring Boot 4</span>
+      <span class="c">MyBatis · MariaDB · Redis</span>
+      <span class="c">AWS · Docker</span>
+      <span class="c">Toss · JWT · SSE</span>
     </div>
   </header>
 
-  <div class="highlight-box">
-    <h2>이 프로젝트에서 보여주고 싶은 것</h2>
-    <div class="highlight-grid">
-      <div class="highlight-item">
-        <div class="num">1</div>
-        <div>
-          <h3>업무 외 시간의 자기개발</h3>
-          <p>본업(커머스웨어 백엔드 개발)과 별개로, 개인 시간을 들여 처음부터 끝까지 직접 만들고 있는 서비스입니다.</p>
-        </div>
-      </div>
-      <div class="highlight-item">
-        <div class="num">2</div>
-        <div>
-          <h3>기획·설계·개발·운영 전 과정 오너십</h3>
-          <p>요구사항 정의부터 DB 설계, API 개발, 배포, 실서비스 운영까지 전 과정을 혼자 책임지고 진행합니다.</p>
-        </div>
-      </div>
-      <div class="highlight-item">
-        <div class="num">3</div>
-        <div>
-          <h3>AI 에이전트 기반 개발 워크플로우</h3>
-          <p>Claude Code를 단순 코드 생성 도구가 아니라, 역할 분리형 서브에이전트 + 축적형 메모리로 구성된 개발 프로세스로 운용합니다.</p>
-        </div>
-      </div>
-      <div class="highlight-item">
-        <div class="num">4</div>
-        <div>
-          <h3>AI 기반 인프라 운영·자동화</h3>
-          <p>배포 스크립트 관리, 컨테이너 운영, 로그 모니터링과 장애 대응까지 AI 에이전트를 인프라 운영 파트너로 활용합니다.</p>
-        </div>
-      </div>
+  <!-- WHY -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Why</span><h2 class="sh">이 프로젝트를 시작한 이유</h2></div>
+    <div class="prose">
+      <p>커머스 백엔드로 일하며 상품·주문·프로모션 등 <strong>주어진 도메인의 일부</strong>를 깊게 다뤄왔습니다. 다만 실무에서는 이미 만들어진 시스템 위에서 일부를 맡는 경우가 많아, <strong>서비스 하나를 요구사항부터 운영까지 통째로 책임지는 경험</strong>을 스스로 만들고 싶었습니다.</p>
+      <p>그래서 실제 운영 니즈가 있는 도메인(헬스장 운영 — 센터·회원·PT세션·급여·결제)을 골라, 관리자 백오피스와 회원 앱을 아우르는 백엔드를 처음부터 설계했습니다. 동시에 <strong>AI 에이전트를 개발 프로세스에 정식으로 결합</strong>했을 때 1인 개발이 어디까지 가능한지를 실험하는 목적도 있었습니다.</p>
+      <div class="draft">✎ 계기 초안입니다 — 실제 시작 계기(예: 지인 헬스장 니즈, 특정 문제 해결, 도메인 선택 이유 등)를 한두 문장 주시면 사실 그대로 교체하겠습니다.</div>
     </div>
+  </section>
+
+  <!-- HOW I WORK -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Process</span><h2 class="sh">일하는 방식 — 기획부터 배포까지</h2><p class="sub">단계를 나눠 진행하고, 각 단계의 규칙과 결정을 문서로 남깁니다.</p></div>
+    <div class="flowbar">
+      <div class="step"><div class="no">01</div><h4>기획</h4><p>요구사항 정의 · 도메인/데이터 모델링</p></div>
+      <div class="step"><div class="no">02</div><h4>설계</h4><p>API 스펙 · 레이어/경계 · 예외 정책</p></div>
+      <div class="step"><div class="no">03</div><h4>개발</h4><p>도메인별 구현 · 사이드이펙트 검토</p></div>
+      <div class="step"><div class="no">04</div><h4>QA·검증</h4><p>모듈 빌드 게이트 · 케이스 점검</p></div>
+      <div class="step"><div class="no">05</div><h4>배포·운영</h4><p>Docker 배포 · 로그 모니터링·대응</p></div>
+    </div>
+    <div class="flownote">
+      <div class="fn"><b>규칙 우선</b> 모든 작업 전 설계 규칙·프로젝트 메모리 문서를 먼저 참조해 컨텍스트를 고정</div>
+      <div class="fn"><b>문서 동기화</b> API 스펙이 바뀌면 정의서를 표준 절차로 함께 갱신</div>
+      <div class="fn"><b>품질 게이트</b> 커밋 전 해당 모듈 빌드 검증, 실패 시 커밋 금지</div>
+      <div class="fn"><b>결정 기록</b> 도메인별 결정·근거를 메모리 문서에 누적해 재현 가능하게 유지</div>
+    </div>
+  </section>
+
+  <!-- DESIGN PRINCIPLES -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Design</span><h2 class="sh">설계 원칙</h2></div>
+    <div class="prin">
+      <div class="pc"><h4>DDD 기반 멀티모듈</h4><p>공유 도메인은 <code>Core</code>, 관리자(BO)·회원(MO)은 별도 모듈. 공유 코드는 반드시 Core에 두어 경계를 강제.</p></div>
+      <div class="pc"><h4>계층 &amp; 경계 분리</h4><p>Controller → Service → Mapper → Entity. <code>DTO</code>는 API 계층, <code>VO</code>는 Service↔Mapper — 도메인이 DTO에 의존하지 않게.</p></div>
+      <div class="pc"><h4>응답·예외 통일</h4><p>모든 응답은 <code>ApiResponse&lt;T&gt;</code>, 예외는 <code>BusinessException</code>+에러코드 enum으로 일관되게 처리.</p></div>
+      <div class="pc"><h4>정합성·추적성 우선</h4><p>상수 중앙화로 매직리터럴 제거, TraceId 필터+AOP로 요청 전 구간 로깅해 장애를 추적 가능하게.</p></div>
+    </div>
+  </section>
+
+  <!-- DECISIONS -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Decisions</span><h2 class="sh">어떻게 결정하는가 — 실제 판단 사례</h2><p class="sub">상황 · 판단 · 근거. 코드 레벨 상세는 면접에서 설명 가능합니다.</p></div>
+
+    <div class="dc">
+      <p class="q">결제 중복 처리를 구조로 막을까, 사후 보정할까</p>
+      <div class="ln"><div class="lb">상황</div><p class="tx">승인 요청과 Toss Webhook이 동시에 도착하거나 재시도가 겹치면 같은 결제가 중복 반영될 수 있음.</p></div>
+      <div class="ln"><div class="lb j">판단</div><p class="tx"><strong>사후 보정 대신 구조로 원천 차단.</strong> 비관적 락(<code class="i">FOR UPDATE</code>)+멱등키로 진입 자체를 1회로 제한, 환불은 잔여 환불가능액 기준.</p></div>
+      <div class="ln"><div class="lb">근거</div><p class="tx">돈이 걸린 도메인은 "고쳐서 맞추기"보다 "틀릴 수 없게 만들기"가 운영 리스크를 줄인다고 판단.</p></div>
+    </div>
+
+    <div class="dc">
+      <p class="q">GX 예약 취소를 회원 앱에도 열까</p>
+      <div class="ln"><div class="lb">상황</div><p class="tx">회원 앱에서 직접 취소를 허용할지, 관리자만 처리할지 결정 필요. BO·MO가 같은 DB를 공유.</p></div>
+      <div class="ln"><div class="lb j">판단</div><p class="tx"><strong>취소는 관리자(BO)에서만 처리하도록 확정</strong>하고 회원 앱은 조회만.</p></div>
+      <div class="ln"><div class="lb">근거</div><p class="tx">취소는 세션·정산·알림에 연쇄 영향이 커, 통제 지점을 하나로 모아 상태 일관성을 지키는 쪽을 택함.</p></div>
+    </div>
+
+    <div class="dc">
+      <p class="q">운영 중인 통합조회 쿼리를 고칠까, 새로 만들까</p>
+      <div class="ln"><div class="lb">상황</div><p class="tx">도메인별 목록 API가 필요했는데, 기존 통합조회 쿼리는 여러 화면이 함께 쓰는 자산.</p></div>
+      <div class="ln"><div class="lb j">판단</div><p class="tx"><strong>기존 쿼리는 손대지 않고</strong>, 단일 파라미터 기반으로 도메인별 신규 쿼리를 각 Mapper에 분리 작성.</p></div>
+      <div class="ln"><div class="lb">근거</div><p class="tx">운영 자산의 사이드이펙트를 원천 차단 — 확장은 격리해서, 기존 동작은 그대로 보존.</p></div>
+    </div>
+
+    <div class="dc">
+      <p class="q">집계 버그를 어떻게 안전하게 고칠까</p>
+      <div class="ln"><div class="lb">상황</div><p class="tx">상태 문자열 오타(<code class="i">RESERVE</code>)로 예약중 세션이 소진으로 잘못 집계 → 급여 오차.</p></div>
+      <div class="ln"><div class="lb j">판단</div><p class="tx">고치기 전 <strong>급여정산의 화이트리스트</strong>(COMPLETED/NO_SHOW만 인정)와 대조해 의도를 검증하고, 오타 전파 여부를 전수 검색.</p></div>
+      <div class="ln"><div class="lb">근거</div><p class="tx">"정상 범위를 좁게 정의"하는 화이트리스트가 블랙리스트보다 실수에 강하다고 보고 기준으로 삼음.</p></div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE (reference) -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Architecture</span><h2 class="sh">아키텍처</h2></div>
+    <div class="arch">
+      <div class="tl">Clients</div>
+      <div class="row"><div class="nd cl">관리자 웹<span>fitin-bo</span></div><div class="nd cl">회원 앱<span>fitin-app</span></div></div>
+      <div class="fl">REST + JWT ↓</div>
+      <div class="tl">Fitness In Service · Multi-Module</div>
+      <div class="row"><div class="nd api">BO API<span>:8080</span></div><div class="nd api">MO API<span>:8082</span></div><div class="nd api">Batch<span>정산</span></div><div class="nd api">Core<span>공유</span></div></div>
+      <div class="fl">↓</div>
+      <div class="tl">Data · External · Infra</div>
+      <div class="row"><div class="nd inf">MariaDB</div><div class="nd inf">Redis</div><div class="nd inf">Nginx</div><div class="nd inf">Kakao</div><div class="nd inf">Toss</div><div class="nd inf">FCM</div></div>
+    </div>
+  </section>
+
+  <!-- STACK + STATS (reference, demoted) -->
+  <section class="sec">
+    <div class="hd"><span class="eyebrow">Stack</span><h2 class="sh">기술 스택 &amp; 규모</h2></div>
+    <div class="stk">
+      <div class="srow"><div class="ct">Backend</div><div class="tags"><span class="t k">Java 17</span><span class="t k">Spring Boot 4</span><span class="t">MyBatis</span><span class="t">Spring Batch</span></div></div>
+      <div class="srow"><div class="ct">Data</div><div class="tags"><span class="t k">MariaDB</span><span class="t">AWS RDS</span><span class="t">Redis</span><span class="t">Pub/Sub</span></div></div>
+      <div class="srow"><div class="ct">인증·결제</div><div class="tags"><span class="t">JWT</span><span class="t">Kakao OAuth</span><span class="t k">Toss Payments</span><span class="t">Webhook</span></div></div>
+      <div class="srow"><div class="ct">실시간·인프라</div><div class="tags"><span class="t">SSE</span><span class="t">STOMP</span><span class="t">FCM</span><span class="t k">Docker</span><span class="t">AWS EC2</span><span class="t">Nginx</span></div></div>
+    </div>
+    <div class="statline">
+      <span class="s"><b>70</b>도메인 엔티티</span>
+      <span class="s"><b>4</b>Gradle 모듈</span>
+      <span class="s"><b>3</b>저장소 (백엔드·관리자·회원앱)</span>
+      <span class="s"><b>1,700+</b>누적 커밋</span>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div><div class="u">beta.fitness-trainer-assistant.ai.kr</div><div class="n">실제 배포된 베타 서비스 · 직접 확인 가능</div></div>
+    <a class="go" href="https://beta.fitness-trainer-assistant.ai.kr" target="_blank" rel="noopener">서비스 열기 ↗</a>
   </div>
 
-  <section>
-    <h2 class="section-title">기술 스택</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>영역</th><th>기술</th></tr></thead>
-        <tbody>
-          <tr><td>Backend</td><td>Java 17, Spring Boot 4.0.0, MyBatis, Spring Batch</td></tr>
-          <tr><td>DB / Cache</td><td>MariaDB 10.x (AWS RDS), Redis (Spring Session)</td></tr>
-          <tr><td>인증</td><td>JWT (JJWT) — Access 1h(BO)/7d(MO), Refresh 14d · Kakao OAuth</td></tr>
-          <tr><td>결제 / 알림</td><td>Toss Payments(승인·Webhook), FCM 푸시, SSE 실시간 알림</td></tr>
-          <tr><td>문서화</td><td>SpringDoc OpenAPI(Swagger) — 엔드포인트 변경 시 API 정의서 자동 갱신</td></tr>
-          <tr><td>인프라</td><td>Docker Compose, AWS EC2/RDS, Nginx, Gradle 멀티모듈</td></tr>
-          <tr><td>Frontend</td><td>React, Vite, TypeScript (관리자 웹 / 회원 앱 각각 별도 SPA)</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">아키텍처</h2>
-    <div class="diagram">
-      <div class="diagram-label">Clients</div>
-      <div class="diagram-tier">
-        <div class="dbox ext">관리자 웹 (fitin-bo)</div>
-        <div class="dbox ext">회원 앱 (fitin-app)</div>
-      </div>
-      <div class="arrow-down">REST + JWT ↓</div>
-      <div class="diagram-label">Fitness In Service (Gradle Multi-Module)</div>
-      <div class="diagram-tier">
-        <div class="dbox">BO API<br><span style="font-weight:400">:8080 관리자 포털</span></div>
-        <div class="dbox">MO API<br><span style="font-weight:400">:8082 회원 API</span></div>
-        <div class="dbox">Batch<br><span style="font-weight:400">정산 스케줄러</span></div>
-        <div class="dbox">Core<br><span style="font-weight:400">공유 엔티티·예외</span></div>
-      </div>
-      <div class="arrow-down">↓</div>
-      <div class="diagram-label">Data / External / Infra (Docker Compose)</div>
-      <div class="diagram-tier">
-        <div class="dbox infra">MariaDB (RDS)</div>
-        <div class="dbox infra">Redis</div>
-        <div class="dbox infra">Nginx</div>
-        <div class="dbox infra">Kakao OAuth</div>
-        <div class="dbox infra">Toss Payments</div>
-        <div class="dbox infra">FCM Push</div>
-        <div class="dbox infra">ai-service</div>
-      </div>
-      <p style="margin: 1rem 0 0; font-size: 0.82rem; color: var(--muted);"><strong>레이어 구조</strong>: Controller → Service → Mapper(MyBatis) → Entity(DB), 도메인별 dto/vo/mapper/service/web 패키지 분리, 모든 응답은 ApiResponse&lt;T&gt;로 통일.</p>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">주요 기능</h2>
-    <div class="two-col">
-      <div class="card">
-        <h3>BO (관리자)</h3>
-        <ul>
-          <li>센터/장비/상품 등록·관리, 트레이너 배정, 상담 이력</li>
-          <li>PT 세션 등록·수정·신체기록, 회원권 관리·양도</li>
-          <li>급여 정산 (직급·센터별 기준, 예상/실 급여 계산)</li>
-          <li>대시보드 (월 매출, 트레이너 랭킹, 재등록율)</li>
-          <li>GX 클래스 스케줄 관리 및 예약 취소/복구 (알림 연동)</li>
-          <li>직원 실시간 알림 (FCM)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>MO (회원 앱) / Batch</h3>
-        <ul>
-          <li>이메일/Kakao 로그인, GX 클래스 조회·예약</li>
-          <li>장바구니, 상품 주문, Toss 결제 승인/Webhook</li>
-          <li>마이페이지 (이용권, 예약, 포인트, 쿠폰, 출석), SSE 실시간 알림</li>
-          <li>Batch: 매시 정각 세션 합계 자동 집계</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">AI 활용 ①  — 멀티 에이전트 개발 워크플로우</h2>
-    <div class="ai-card">
-      <p class="desc">단순히 Claude Code로 코드를 생성하는 수준이 아니라, 역할별 전문 에이전트 + 축적형 프로젝트 메모리로 개발 프로세스 자체를 구성했습니다.</p>
-      <ul>
-        <li><strong>역할 분리형 서브에이전트</strong> — 요구사항 기획(requirement-planner) → 개발(fitness-senior-developer) → QA(qa-test-engineer) → 커밋(git-commit-pusher)로 작업 분리</li>
-        <li><strong>축적형 프로젝트 메모리</strong> — 결제 도메인, 보안 패턴, API 설계 규칙 등을 MEMORY.md/도메인별 문서로 계속 누적, 매 세션 반복 설명 없이 컨텍스트 유지</li>
-        <li><strong>스킬 기반 라우팅</strong> — 작업 유형(Batch/Redis/SQL/API 문서화 등)별 필수 참조 문서를 매핑한 마스터 인덱스 운영</li>
-        <li><strong>엄격한 품질 게이트</strong> — 커밋 전 해당 모듈 Gradle 빌드 검증 필수, API 스펙 변경 시 정의서 자동 갱신을 표준 절차로 강제</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">AI 활용 ② — 인프라 운영·자동화</h2>
-    <div class="ai-card">
-      <p class="desc">개발뿐 아니라 배포·운영 단계에서도 AI 에이전트를 인프라 운영 파트너로 활용해, 1인 운영 체제에서도 실서비스 안정성을 유지하고 있습니다.</p>
-      <ul>
-        <li><strong>배포 자동화</strong> — Claude Code로 배포 스크립트를 관리하고, Docker Compose 기반 배포 실행·운영을 자동화</li>
-        <li><strong>컨테이너 운영</strong> — Nginx, Redis, Batch, BO, MO, ai-service를 Docker 컨테이너로 구성해 AWS EC2 위에서 실제 운영</li>
-        <li><strong>인프라</strong> — AWS EC2, RDS(MariaDB) 실제 운영 중</li>
-        <li><strong>모니터링 &amp; 장애 대응</strong> — 서버 로그를 상시 모니터링하고, 장애 감지 시 AI가 원인을 분석해 해결 방안 가이드를 작성하고 알림(노티)까지 연결</li>
-      </ul>
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-title">규모</h2>
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>저장소</th><th>역할</th><th>커밋 수</th></tr></thead>
-        <tbody>
-          <tr><td>Fitness-In-Service</td><td>백엔드 (BO/MO/Batch/Core)</td><td>698</td></tr>
-          <tr><td>fitin-bo</td><td>관리자 웹 프론트엔드</td><td>785</td></tr>
-          <tr><td>fitin-app</td><td>회원 앱 프론트엔드</td><td>288</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <div class="link-box">
-    <div>
-      <div class="url">https://beta.fitness-trainer-assistant.ai.kr</div>
-      <div class="note">실제 배포된 베타 서비스 — 화면 구성·응답 속도 등 직접 확인 가능 (계정 로그인은 지원되지 않습니다)</div>
-    </div>
-  </div>
-
-  <footer>Fitness In Service 프로젝트 소개서 · 소스코드는 실서비스 운영 중인 관계로 비공개이며, 아키텍처·설계 결정·트러블슈팅 경험은 면접에서 상세히 설명 가능 · 2026.07.21 작성</footer>
+  <footer>소스코드는 실서비스 운영 중인 관계로 비공개 · 설계·의사결정의 코드 레벨 상세는 면접에서 설명 가능 · 2026.07</footer>
 
 </div>
+</body>
+</html>

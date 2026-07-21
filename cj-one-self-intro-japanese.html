@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>일본어 자기소개 (CJ ONE 대비)</title>
+<style>
+  :root {
+    --bg: #f4f6f8; --surface: #ffffff; --surface-2: #eef1f5; --ink: #16202b; --muted: #57626f;
+    --line: #dde2e8; --accent: #0f6e5c; --accent-soft: #dcf0ea;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0d1417; --surface: #161f24; --surface-2: #1c272d; --ink: #eef2f4; --muted: #9fadb8; --line: #2c3944; --accent: #3fb897; --accent-soft: #163530; }
+  }
+  :root[data-theme="dark"] { --bg: #0d1417; --surface: #161f24; --surface-2: #1c272d; --ink: #eef2f4; --muted: #9fadb8; --line: #2c3944; --accent: #3fb897; --accent-soft: #163530; }
+  :root[data-theme="light"] { --bg: #f4f6f8; --surface: #ffffff; --surface-2: #eef1f5; --ink: #16202b; --muted: #57626f; --line: #dde2e8; --accent: #0f6e5c; --accent-soft: #dcf0ea; }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1.5rem 5rem; display: flex; flex-direction: column; gap: 2rem; }
+
+  header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.1rem); margin: 0 0 0.5rem; }
+  header p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem 2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card h2 { margin: 0 0 1.2rem; font-size: 1rem; color: var(--accent); letter-spacing: 0.02em; text-transform: uppercase; }
+
+  .jp { font-size: 1.25rem; }
+  .jp p { margin: 0 0 1.3rem; }
+  .jp p:last-child { margin-bottom: 0; }
+  ruby rt { font-size: 0.55em; color: var(--muted); }
+
+  .ko { color: var(--muted); font-size: 0.98rem; }
+  .ko p { margin: 0 0 1rem; }
+  .ko p:last-child { margin-bottom: 0; }
+
+  .note { background: var(--surface-2); border-radius: var(--radius); padding: 1.25rem 1.5rem; font-size: 0.9rem; color: var(--muted); }
+  .note ul { margin: 0; padding-left: 1.2rem; }
+  .note li { margin-bottom: 0.4rem; }
+  .note li:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>일본어 자기소개 — CJ ONE 면접 대비</h1>
+    <p>JLPT N3 + 워킹홀리데이 경험 확인용 예상 질문 대비 30초 스크립트. 후리가나는 한자 위에 표시됨.</p>
+  </header>
+
+  <div class="card">
+    <h2>日本語</h2>
+    <div class="jp">
+      <p>はじめまして。〇〇と<ruby>申<rt>もう</rt></ruby>します。</p>
+      <p><ruby>私<rt>わたし</rt></ruby>はJavaとSpringを<ruby>使<rt>つか</rt></ruby>うバックエンドエンジニアで、6年ほど<ruby>経験<rt>けいけん</rt></ruby>があります。ECサイトのシステム<ruby>開発<rt>かいはつ</rt></ruby>と<ruby>運用<rt>うんよう</rt></ruby>を<ruby>担当<rt>たんとう</rt></ruby>してきました。</p>
+      <p><ruby>日本<rt>にほん</rt></ruby>で<ruby>1年間<rt>いちねんかん</rt></ruby>、ワーキングホリデーをしました。<ruby>東京<rt>とうきょう</rt></ruby>の<ruby>日本語<rt>にほんご</rt></ruby><ruby>学校<rt>がっこう</rt></ruby>にも6か<ruby>月<rt>げつ</rt></ruby><ruby>通<rt>かよ</rt></ruby>って、JLPT N3を<ruby>取得<rt>しゅとく</rt></ruby>しました。この<ruby>経験<rt>けいけん</rt></ruby>を<ruby>通<rt>つう</rt></ruby>じて、<ruby>新<rt>あたら</rt></ruby>しい<ruby>環境<rt>かんきょう</rt></ruby>に<ruby>挑戦<rt>ちょうせん</rt></ruby>する<ruby>力<rt>ちから</rt></ruby>と、<ruby>異文化<rt>いぶんか</rt></ruby>コミュニケーション<ruby>能力<rt>のうりょく</rt></ruby>を<ruby>身<rt>み</rt></ruby>につけました。</p>
+      <p><ruby>御社<rt>おんしゃ</rt></ruby>でも、この<ruby>経験<rt>けいけん</rt></ruby>を<ruby>活<rt>い</rt></ruby>かして、グローバルな<ruby>視点<rt>してん</rt></ruby>でサービスを<ruby>作<rt>つく</rt></ruby>っていきたいと<ruby>思<rt>おも</rt></ruby>います。よろしくお<ruby>願<rt>ねが</rt></ruby>いいたします。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>한국어 번역</h2>
+    <div class="ko">
+      <p>처음 뵙겠습니다. ○○이라고 합니다.</p>
+      <p>저는 Java와 Spring을 사용하는 백엔드 엔지니어로, 6년 정도 경력이 있습니다. 이커머스 시스템 개발과 운영을 담당해 왔습니다.</p>
+      <p>일본에서 1년 동안 워킹홀리데이를 했습니다. 도쿄의 일본어 학교도 6개월 다니며 JLPT N3를 취득했습니다. 이 경험을 통해 새로운 환경에 도전하는 힘과 이문화 커뮤니케이션 능력을 익혔습니다.</p>
+      <p>귀사에서도 이 경험을 살려 글로벌한 시각으로 서비스를 만들어가고 싶습니다. 잘 부탁드립니다.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <ul>
+      <li>실제 CJ 지원동기(재입사 이력)와 겹치지 않게 워홀 경험 위주로만 구성함.</li>
+      <li>년도(2024/2025) 표기는 발음 난이도 때문에 "1年間(1년 동안)"으로 단순화함.</li>
+      <li>핵심 질문이 아닌 "플러스알파" 확인용일 가능성이 높아 완벽 암기보다 자연스럽게 30초 안에 말할 수 있는 수준으로 연습 권장.</li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>
