@@ -1,0 +1,590 @@
+<title>CJ 지원 종합 대시보드</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --surface: #ffffff;
+    --surface-2: #eef1f5;
+    --ink: #16202b;
+    --muted: #57626f;
+    --line: #dde2e8;
+    --accent: #0f6e5c;
+    --accent-strong: #0a5346;
+    --accent-soft: #dcf0ea;
+    --blue: #2454b3;
+    --blue-soft: #e2eaf9;
+    --good: #157a4a;
+    --good-soft: #e0f3e6;
+    --bad: #b3261e;
+    --bad-soft: #fbe4e1;
+    --warn: #9a6b00;
+    --warn-soft: #fbecd0;
+    --radius: 14px;
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1417; --surface: #161f24; --surface-2: #1c272d; --ink: #eef2f4; --muted: #9fadb8;
+      --line: #2c3944; --accent: #3fb897; --accent-strong: #6fd4b6; --accent-soft: #163530;
+      --blue: #6f9bf0; --blue-soft: #16233d;
+      --good: #4ecb8b; --good-soft: #133226; --bad: #f0897a; --bad-soft: #3a1a17; --warn: #f0c25e; --warn-soft: #3a2c0e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1417; --surface: #161f24; --surface-2: #1c272d; --ink: #eef2f4; --muted: #9fadb8;
+    --line: #2c3944; --accent: #3fb897; --accent-strong: #6fd4b6; --accent-soft: #163530;
+    --blue: #6f9bf0; --blue-soft: #16233d;
+    --good: #4ecb8b; --good-soft: #133226; --bad: #f0897a; --bad-soft: #3a1a17; --warn: #f0c25e; --warn-soft: #3a2c0e;
+  }
+  :root[data-theme="light"] {
+    --bg: #f4f6f8; --surface: #ffffff; --surface-2: #eef1f5; --ink: #16202b; --muted: #57626f;
+    --line: #dde2e8; --accent: #0f6e5c; --accent-strong: #0a5346; --accent-soft: #dcf0ea;
+    --blue: #2454b3; --blue-soft: #e2eaf9;
+    --good: #157a4a; --good-soft: #e0f3e6; --bad: #b3261e; --bad-soft: #fbe4e1; --warn: #9a6b00; --warn-soft: #fbecd0;
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  a { color: var(--blue); text-underline-offset: 2px; }
+  .wrap { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem 6rem; display: flex; flex-direction: column; gap: 3rem; }
+
+  header.top { padding-bottom: 1.75rem; border-bottom: 1px solid var(--line); }
+  header.top h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.5rem); margin: 0 0 0.6rem; text-wrap: balance; }
+  header.top p { margin: 0; color: var(--muted); font-size: 1.02rem; max-width: 66ch; }
+
+  .stat-row { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+  .stat-chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 0.55rem 1.05rem; font-size: 0.88rem; color: var(--muted); display: flex; align-items: baseline; gap: 0.4rem; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+  .stat-chip b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--ink); font-size: 1rem; }
+  .stat-chip.urgent { border-color: var(--bad); background: var(--bad-soft); }
+  .stat-chip.urgent b { color: var(--bad); }
+
+  .callout { background: var(--surface); border: 1px solid var(--line); border-left: 5px solid var(--accent); border-radius: var(--radius); padding: 1.4rem 1.6rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .callout.good { border-left-color: var(--good); }
+  .callout h2 { margin: 0 0 0.8rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent-strong); font-weight: 800; }
+  .callout.good h2 { color: var(--good); }
+  .callout ul { margin: 0; padding-left: 1.2rem; }
+  .callout li { margin: 0.55rem 0; }
+  .callout p { margin: 0; font-size: 1rem; }
+  .callout li span.tag { display: inline-flex; align-items: center; font-family: var(--font-body); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.02em; color: var(--accent-strong); margin-right: 0.6rem; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent-strong) 35%, transparent); padding: 0.28rem 0.75rem; border-radius: 999px; vertical-align: middle; line-height: 1; }
+  .callout.good li span.tag { color: var(--good); background: var(--good-soft); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
+
+  section h2.section-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin: 0 0 1.3rem; display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; }
+  section h2.section-title .count { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); font-weight: 400; }
+  section .section-note { color: var(--muted); font-size: 0.92rem; margin: -0.9rem 0 1.2rem; }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--line); vertical-align: top; white-space: normal; }
+  thead th { background: var(--surface-2); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 700; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--surface-2); }
+  .ok { color: var(--good); font-weight: 700; }
+  .gap { color: var(--bad); font-weight: 700; }
+  .warncell { color: var(--warn); font-weight: 700; }
+
+  .pill { display: inline-flex; align-items: center; font-family: var(--font-body); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.01em; padding: 0.32rem 0.85rem; border-radius: 999px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--line); line-height: 1.2; }
+  .pill.good { background: var(--good-soft); color: var(--good); border-color: color-mix(in srgb, var(--good) 35%, transparent); }
+  .pill.bad { background: var(--bad-soft); color: var(--bad); border-color: color-mix(in srgb, var(--bad) 35%, transparent); }
+  .pill.top { background: var(--accent-soft); color: var(--accent-strong); border-color: color-mix(in srgb, var(--accent-strong) 35%, transparent); }
+  .pill.blue { background: var(--blue-soft); color: var(--blue); border-color: color-mix(in srgb, var(--blue) 35%, transparent); }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card + .card { margin-top: 1rem; }
+  .card h3 { margin: 0 0 0.4rem; font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .card .sub { color: var(--muted); font-size: 0.86rem; margin: 0 0 0.9rem; }
+  .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li { margin: 0.4rem 0; }
+
+  details.doc { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: 0.9rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  details.doc > summary { cursor: pointer; list-style: none; padding: 1.1rem 1.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; font-weight: 700; font-size: 1rem; }
+  details.doc > summary::-webkit-details-marker { display: none; }
+  details.doc > summary .chevron { color: var(--muted); transition: transform 0.15s ease; flex-shrink: 0; }
+  details.doc[open] > summary { border-bottom: 1px solid var(--line); }
+  details.doc[open] > summary .chevron { transform: rotate(90deg); }
+  .doc-body { padding: 1.2rem 1.4rem 1.4rem; font-size: 0.95rem; }
+  .doc-body h4 { font-family: var(--font-display); font-size: 1.1rem; margin: 1.3rem 0 0.6rem; }
+  .doc-body h4:first-child { margin-top: 0; }
+  .doc-body h5 { font-size: 0.84rem; margin: 1.1rem 0 0.45rem; color: var(--accent-strong); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 800; }
+  .doc-body p { margin: 0.55rem 0; }
+  .doc-body ul, .doc-body ol { margin: 0.5rem 0; padding-left: 1.35rem; }
+  .doc-body li { margin: 0.4rem 0; }
+  .doc-body blockquote { margin: 0.8rem 0; padding: 0.75rem 1rem; background: var(--surface-2); border-left: 4px solid var(--line); border-radius: 8px; color: var(--muted); font-size: 0.88rem; }
+  .doc-body .quote-text { white-space: pre-line; background: var(--surface-2); border-radius: 10px; padding: 1.05rem 1.15rem; font-size: 0.9rem; line-height: 1.75; margin: 0.7rem 0; }
+  .doc-body .table-scroll { margin: 0.7rem 0; }
+  .doc-body table { font-size: 0.86rem; }
+  .doc-source { display: inline-block; margin-top: 1.1rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); background: var(--surface-2); border-radius: 7px; padding: 0.35rem 0.7rem; }
+
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.6rem 0 0.9rem; }
+  .stack-tags span { font-family: var(--font-body); font-size: 0.8rem; background: var(--blue-soft); color: var(--blue); border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent); padding: 0.3rem 0.8rem; border-radius: 999px; font-weight: 700; letter-spacing: 0.01em; }
+
+  .unit-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+  .unit-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.2rem 1.35rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .unit-card.best { border: 2px solid var(--accent); position: relative; }
+  .unit-card h4 { margin: 0 0 0.3rem; font-size: 1.02rem; font-weight: 700; }
+  .unit-card .exp { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); margin-bottom: 0.6rem; }
+  .unit-card p { font-size: 0.88rem; color: var(--muted); margin: 0.4rem 0; }
+  .unit-card a.more { font-size: 0.82rem; font-weight: 600; }
+
+  .steps { display: flex; flex-direction: column; gap: 0; border-left: 3px solid var(--line); margin-left: 15px; }
+  .step { position: relative; padding: 0 0 1.6rem 2.2rem; }
+  .step:last-child { padding-bottom: 0; }
+  .step-num { position: absolute; left: -18px; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); border: 3px solid var(--line); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 800; font-size: 0.85rem; color: var(--muted); }
+  .step.done .step-num { border-color: var(--good); color: var(--good); background: var(--good-soft); }
+  .step.now .step-num { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-soft); }
+  .step-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.15rem 1.35rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .step-card h4 { margin: 0 0 0.5rem; font-size: 1.02rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+  .step-card p { margin: 0.35rem 0; font-size: 0.9rem; color: var(--muted); }
+  .step-card ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+  .step-card li { margin: 0.35rem 0; font-size: 0.89rem; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+
+  @media (max-width: 600px) {
+    body { font-size: 15.5px; }
+    .wrap { padding: 2rem 1.1rem 4rem; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <h1>CJ 지원 종합 대시보드</h1>
+    <p>CJ올리브네트웍스(CJ ONE)와 CJ올리브영, 같은 CJ 계열 내 두 법인의 백엔드 포지션을 한 화면에서 비교·판단하기 위한 자료. 원문 공고·평판 리서치·자소서 초안까지 md 파일 옮겨다니지 않고 여기서 확인 가능.</p>
+  </header>
+
+  <div class="stat-row">
+    <span class="stat-chip urgent">CJ ONE 마감 <b>D-10</b> (07.31)</span>
+    <span class="stat-chip urgent">올리브영 AI-First 마감 <b>D-19</b> (08.09)</span>
+    <span class="stat-chip">올리브영 테크플랫폼센터 대규모채용 <b>상시</b></span>
+    <span class="stat-chip">리서치 갱신일 <b>2026.07.21</b></span>
+  </div>
+
+  <div class="callout">
+    <h2>지금 바로 판단할 것</h2>
+    <ul>
+      <li><span class="tag">1순위</span><strong>CJ ONE 계획대로 진행</strong> — 마감 확정(07.31), 자소서·CFT·코딩테스트 준비 대부분 완료. 제출 목표 07.27~28 그대로 유지</li>
+      <li><span class="tag">검토</span><strong>올리브영 "코어플랫폼유닛"(경력 4년+) 동시 지원 검토</strong> — 상품/회원/프로모션/인벤토리/정산이 담당업무, 본인 도메인과 가장 직접적으로 겹침. K8s가 필수요건에 없음(우대사항에 Kafka/ES/Redis만)</li>
+      <li><span class="tag">주의</span><strong>올리브영 "유닛" 공고들은 동시 기간 내 1개만 지원 가능</strong> — 코어/커머스/엔터프라이즈/검색/글로벌 5개 유닛 중 하나만 선택. AI-First Track도 대규모채용과 중복 지원 불가(택1)</li>
+      <li><span class="tag">확인</span>올리브영 공식 채용사이트(career.oliveyoung.com)에서 직접 확인한 공고가 원티드에서 스크래핑한 목록과 다름 — 아래 "공식 확인" 표시된 내용을 우선 신뢰할 것</li>
+    </ul>
+  </div>
+
+  <section>
+    <h2 class="section-title">CJ ONE 진행 순서 <span class="count">지금부터 순서대로</span></h2>
+    <div class="steps">
+      <div class="step done">
+        <div class="step-num">1</div>
+        <div class="step-card">
+          <h4>recruit.cj.net 로그인, 실제 지원서 양식 확인 <span class="pill good">완료</span></h4>
+          <p>실제 접속해서 확인함 — 예상했던 "4문항 자소서"가 아니라 <strong>자기소개 문항 2개 + 파일첨부(zip/pdf/docx/hwp, 최대 10MB)</strong> 구조. 아래 2·3단계에 실제 문항 기준으로 반영 완료.</p>
+        </div>
+      </div>
+      <div class="step done">
+        <div class="step-num">2</div>
+        <div class="step-card">
+          <h4>기술경력서(파일첨부용) 준비 <span class="pill good">내용 완료 · 형식만 맞추면 됨</span></h4>
+          <p><a href="https://github.com/wlsdlstjdwls/career-description" target="_blank" rel="noopener">career-description</a> 저장소 README.md에 경력·프로젝트·기술스택·자격까지 이미 정리돼 있음. 문항1(경력기술서 양식) 답변과 내용은 겹치지만, 글자수 초과분·포트폴리오는 이 내용을 PDF로 변환해 첨부파일란에 첨부.</p>
+        </div>
+      </div>
+      <div class="step now">
+        <div class="step-num">3</div>
+        <div class="step-card">
+          <h4>자기소개 문항 2개 최종본 <span class="pill top">윤문 완료 · 붙여넣기만 남음</span></h4>
+          <p>실제 문항: ① "경력사항에 대해 구체적으로 작성해 주세요(경력기술서 양식, 줄글 서술 지양)" ② "CJ올리브네트웍스에 지원한 동기를 작성해 주세요" — 각 최대 10,000자. humanize-korean 윤문 완료(등급 A, 자체검증 6/6). 아래 "CJ올리브네트웍스 · CJ ONE" 섹션의 "자기소개 실제 문항 최종본" 참고.</p>
+          <ul>
+            <li>⚠️ 소속부서/직급 정확한 명칭 본인 확인 후 기재 필요</li>
+            <li>⚠️ PC몰 리뉴얼 응답속도 수치 불일치 확인 필요 — 문항1은 "3~5초", 기존 자료엔 "4~5초"로도 기재돼 있었음. 정확한 쪽으로 통일할 것</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-card">
+          <h4>서류 제출 <span class="pill blue">목표 07.27~28 · 마감 07.31</span></h4>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-card">
+          <h4>코딩테스트 대비 <span class="pill">제출 후 ~ 결과 발표 전</span></h4>
+          <p>문자열/배열 → 스택/큐 → BFS/DFS 순서로 실전 문제 풀이 (프로그래머스, 2시간 2~3문제 수준)</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-card">
+          <h4>면접 대비 <span class="pill">서류 통과 후</span></h4>
+          <ul>
+            <li>CS 기본기·시스템설계 소리 내어 답변 연습</li>
+            <li>Kubernetes 기초 개념 학습 — 필수요건에 두 번 명시됨(원문 확인 완료), 최소 "개념은 안다" 수준 필요</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-card">
+          <h4>CFT 인성검사 <span class="pill">면접 단계와 병행</span></h4>
+          <p>5개 성향 축 정리 완료, 검사 전날 컨디션 관리만 남음</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">한눈에 비교</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>항목</th><th>CJ올리브네트웍스 · CJ ONE</th><th>CJ올리브영 · 코어플랫폼유닛</th><th>CJ올리브영 · AI-First Track</th></tr></thead>
+        <tbody>
+          <tr><td>경력요건</td><td>5~10년 (정확히 부합)</td><td>4년 이상 (부합, 더 넓음)</td><td>2년 이상</td></tr>
+          <tr><td>최대 갭</td><td class="gap">Kubernetes 필수요건</td><td class="ok">필수요건상 없음 (우대: Kafka/ES/Redis)</td><td class="gap">K8s는 인프라 스택 포함, AI/ML 실무는 약함</td></tr>
+          <tr><td>마감</td><td class="gap">2026.07.31 확정 (D-10)</td><td class="ok">상시채용</td><td class="gap">2026.08.09 (D-19)</td></tr>
+          <tr><td>담당업무</td><td>회원 가입/인증/인가, 멤버십 포인트</td><td class="ok">상품/회원/프로모션/인벤토리/정산 통합 관리</td><td>AI 기반 상품/회원/프로모션/인벤토리/정산 플랫폼</td></tr>
+          <tr><td>전형 단계</td><td>서류→코딩테스트→1차→CFT→2차→평판조회 (무겁고 김)</td><td>서류→1차(Live Coding/구술)→인성검사→2차(Whiteboard)→평판조회·처우협의→건강검진</td><td>서류→AI과제테스트→1차(과제리뷰)→인성검사+2차(화이트보드)→평판조회, 9~10월까지 지속</td></tr>
+          <tr><td>기술블로그 활성도</td><td class="gap">자체 방치(2022.07~), 자매사만 활발</td><td class="ok">월 3건, Kafka/MSA/카오스엔지니어링</td><td class="ok">동일 (올리브영 소속)</td></tr>
+          <tr><td>개발자 커뮤니티 평판</td><td class="gap">"SI회사", "커리어 망치는 곳" 우세</td><td class="ok">잡코리아 커리어성장 74점, 자사서비스 인식</td><td class="ok">동일 (올리브영 소속)</td></tr>
+          <tr><td>본인 강점 매칭</td><td>고객자산·포인트 도메인 직결</td><td class="ok">상품/프로모션 6년 도메인과 최직접 매칭</td><td>멀티 AI 에이전트 워크플로우 경험이 "AI 전형 지원 이유"에 바로 활용 가능</td></tr>
+          <tr><td>종합 판단</td><td><span class="pill top">1순위 · 계획대로 진행</span></td><td><span class="pill top">검토 가치 높음 · 동시 지원 권장</span></td><td><span class="pill blue">부담 큼 · 택1 필요</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">CJ올리브네트웍스 · CJ ONE <span class="count">마감 2026.07.31 · 회원 서비스 백엔드</span></h2>
+
+    <details class="doc" open>
+      <summary><span>자격요건 대조 &amp; 갭 분석</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <p class="sub">근무지 서울 용산구 CJ올리브네트웍스 본사 · 전형: 서류전형→코딩테스트→1차면접→CFT(인성검사)→2차면접→평판조회·처우협의→채용검진→최종합격</p>
+        <h5>기술스택 (공고 원문)</h5>
+        <div class="stack-tags"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>Spring Data JPA</span><span>PostgreSQL/Oracle/MySQL</span><span>Redis</span><span>GitLab</span><span>ArgoCD</span><span>AWS</span><span>Kubernetes</span><span>Docker</span></div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>요건</th><th>본인 현황</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td>백엔드 경력 5~10년</td><td class="ok">6년차, 정확히 부합</td><td>그대로 어필</td></tr>
+              <tr><td>Java / Spring Boot</td><td class="ok">6년+</td><td>강점</td></tr>
+              <tr><td>RESTful API 설계·개발</td><td class="ok">주문상세/고객자산/사은행사/선물받기 API 등 다수</td><td>강점</td></tr>
+              <tr><td>RDBMS(MySQL/Oracle/PostgreSQL)</td><td>Oracle·PL/SQL 5년+, MariaDB</td><td>Oracle 정확히 일치, 나머지는 "원리 동일 적용 가능"으로 방어</td></tr>
+              <tr><td>대규모 서비스 설계·구축·운영</td><td class="ok">더현대·투홈 NCP 통합</td><td>강점, "고객사 플랫폼을 벤더사 소속으로 운영"했음을 정직하게 기술</td></tr>
+              <tr><td>Kubernetes 활용 서비스 개발</td><td class="gap">경험 없음/제한적(Docker·Nginx까지만)</td><td class="gap">가장 큰 갭. 허위 기재 금지 — "Docker 운영 경험 있음, K8s는 개념 학습 중"으로 정직하게</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>결론: 필수요건은 충족, <strong>Kubernetes 실무 경험 부재</strong>가 유일한 필수요건 갭. 인증서버(OAuth2 AS/OIDC/SSO)·MSA·Redis Cluster는 미보유(우대사항). 지원 권장, 갭은 정직하게 인정하고 "무엇으로 메꿀지" 제시.</p>
+        <span class="doc-source">cj-one-application-draft.md</span>
+      </div>
+    </details>
+
+    <details class="doc" open>
+      <summary><span>자기소개 실제 문항 최종본 (2문항, 윤문 완료)</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <p class="sub">recruit.cj.net 실제 지원서 화면 직접 확인(2026.07.21) — 자소서는 4문항이 아니라 아래 2문항 + 파일첨부(zip/pdf/docx/hwp, 최대 10MB) 구조. humanize-korean 윤문 적용(등급 A, 자체검증 6/6, 사실관계 100% 보존).</p>
+
+        <blockquote>⚠️ 제출 전 본인 확인 필수: (1) 소속부서/직급 정확한 명칭 — 아래 [※확인 필요] 표시 부분 (2) PC몰 리뉴얼 응답속도 수치 — 문항1엔 "3~5초", 예전 자료엔 "4~5초"로도 있었음. 정확한 쪽으로 통일할 것</blockquote>
+
+        <h5>문항 1 · 경력사항에 대해 구체적으로 작성해 주세요 (경력기술서 양식, 줄글 서술 지양 · 최대 10,000자)</h5>
+        <div class="quote-text">■ 회사명: 커머스웨어 (재입사)
+■ 재직기간: 2025.11 ~ 현재
+■ 소속부서/직급: 개발팀 · 백엔드 개발자 [※ 정확한 부서명/직급 확인 후 기재 필요]
+■ 주요업무내용: 주문팀 프론트 API 개발, 현대백화점그룹 NCP(더현대·투홈) 플랫폼 통합 고도화
+
+□ 프로젝트명: 현대백화점 NCP 구축 (더현대·투홈 플랫폼 통합)
+- 수행기간: 2025.11 ~ 2026.04
+- 참여도: 주문상세, 고객자산(예치금/H.Point/RSVP/바우처), 사은행사, 선물받기 API 단독 개발
+- 성과: 오픈 직전 바우처 정책 변경으로 옵션 포맷이 가변화되면서 발생한 파싱 오류를 영향받는 쿼리 전수조사와 정규식 기반 일괄 교체로 서비스 중단 없이 대응
+- 업무상강점: 정책 변경 등 돌발 이슈 발생 시 영향범위를 신속히 분석하고 무중단으로 대응하는 능력
+
+□ 프로젝트명: 프로모션 효율성 분석 AI 에이전트
+- 수행기간: 2025.11 ~ 현재
+- 참여도: 사내 자체 과제, 기획부터 개발까지 전담
+- 성과: FastAPI 기반 백엔드에 Claude/Gemini/Groq 멀티 AI 프로바이더를 연동, 프로모션 실적 데이터 자동 분석 체계 구축
+- 업무상강점: 최신 LLM 기술을 실무 생산성 도구로 적용하는 응용력
+
+■ 회사명: 커머스웨어
+■ 재직기간: 2019.01 ~ 2024.11
+■ 소속부서/직급: 개발팀 · 백엔드 개발자 [※ 정확한 부서명/직급 확인 후 기재 필요]
+■ 주요업무내용: E-커머스 플랫폼(상품/주문/프로모션/클레임) 개발 및 운영
+
+□ 프로젝트명: PC몰 리뉴얼
+- 수행기간: 2023.05 ~ 2023.08
+- 참여도: 주요 화면 쿼리 튜닝 및 캐시 적용 담당
+- 성과: 응답속도 최대 3~5초에서 1~2초대로 단축
+- 업무상강점: 쿼리 분석 기반 성능 최적화 역량
+
+□ 프로젝트명: 카드즉시할인 프로모션
+- 수행기간: 2024.01 ~ 2024.07
+- 참여도: 결제 단계 즉시할인 프로세스 신규 설계 및 개발
+- 성과: TV·ARS·웹/앱 등 다중 채널에 걸친 영향 범위를 사전 검증해 사이드이펙트 없이 안정적으로 오픈
+- 업무상강점: 다채널 서비스의 영향범위를 사전에 파악하는 꼼꼼함
+
+□ 프로젝트명: 할인권 프로모션
+- 수행기간: 2024.08 ~ 2024.10
+- 참여도: 고객 등급별 할인권 자동 지급 및 주문 적용 로직 개발
+- 성과: 등급별 할인 정책을 무오류로 자동화 처리
+
+□ 프로젝트명: 전시 모듈화
+- 수행기간: 2023.10 ~ 2023.12
+- 참여도: 컴포넌트 단위 전시 구성 시스템 개발
+- 성과: 화면 구성 요소의 재사용성 확보
+
+□ 프로젝트명: 기간계 시스템 고도화 (Adobe Flex → ExtJS 전환)
+- 수행기간: 2020.01 ~ 2021.01
+- 참여도: AA(Application Architect) 역할로 코어/공통 모듈 설계, 팀 대상 ExtJS 교육 진행
+- 성과: 레거시 시스템을 무중단으로 신규 시스템으로 전환
+- 업무상강점: 단순 기술 전환을 넘어 팀 전체의 개발 기준을 통일하는 기술 리딩 경험
+
+□ 프로젝트명: 보이는 ARS
+- 수행기간: 2021.09 ~ 2022.02
+- 참여도: ARS 채널 주문/결제/상담 시각화 개발
+
+□ 프로젝트명: 호주 시스템 구축/운영
+- 수행기간: 2019.03 ~ 2019.12
+- 참여도: 해외 홈쇼핑 시스템 신규 구축
+
+■ 퇴사/이직사유: 2024.11 개인적으로 새로운 환경을 경험하고자 일본 워킹홀리데이(2024.12~2025.11)를 다녀왔으며, 재직 중 경험한 조직문화와 협업 방식이 만족스러워 2025.11 동일 회사로 재입사함.</div>
+
+        <h5>문항 2 · CJ올리브네트웍스에 지원한 동기를 작성해 주세요 (최대 10,000자)</h5>
+        <div class="quote-text">E-커머스 백엔드 엔지니어로 6년간 상품, 주문, 프로모션, 클레임 같은 핵심 도메인을 설계하고 개발·운영해 왔습니다. 대규모 트래픽 환경에서 안정성과 성능을 함께 확보하는 일이 제 강점입니다. 최근에는 더현대·투홈 플랫폼 통합 프로젝트에서 고객자산(예치금, H.Point, RSVP, 바우처) API를 직접 맡았습니다. 포인트나 적립, 바우처처럼 사용자의 신뢰와 직결되는 도메인을 다루면서 그 무게를 실감했습니다. 오픈 직전 바우처 정책이 바뀌어 옵션 포맷이 가변화되자 파싱 오류가 생겼는데, 영향받는 쿼리를 전수 조사하고 정규식으로 일괄 교체해 서비스 중단 없이 해결했습니다. 작은 정책 변경 하나가 대규모 회원 시스템에서 여러 서비스로 파급될 수 있다는 걸 체감한 경험이었습니다.
+
+CJ ONE은 올리브영, 뚜레쥬르, 온스타일에서 출발해 지금은 메가커피, 신세계면세점 등 다양한 제휴사를 아우르는, 3천만 명이 넘는 사용자의 통합 멤버십·포인트 시스템입니다. 제가 다뤄온 고객 자산 도메인의 확장판이라 할 만큼 맞닿아 있다고 느꼈습니다. 여러 브랜드와 채널에 걸친 대규모 트랜잭션을 안정적으로 처리하는 시스템을 만드는 일에 지금까지의 경험을 이어가고 싶어 지원했습니다.
+
+구체적으로는 PC몰 리뉴얼 프로젝트에서 응답속도를 최대 4~5초에서 1~2초대로 줄인 쿼리 튜닝·캐시 적용 경험, 그리고 기간계 시스템 고도화 프로젝트에서 AA 역할로 코어/공통 모듈을 설계하고 팀 전체에 ExtJS 교육을 진행한 기술 리딩 경험을 CJ ONE의 회원 서비스 플랫폼에도 적용할 수 있습니다. 개인 프로젝트 Fitness In Service에서 쌓은 인증/인가 이해도 마찬가지입니다. Spring Boot 멀티모듈 구조로 JWT 인증, Redis 세션, Kakao OAuth, Toss Payments 결제, SSE 실시간 알림까지 구현하고 AWS EC2·Docker·Nginx 환경에 직접 배포·운영한 경험은 CJ ONE의 회원 가입, 로그인, 계정 관리 업무에 바로 연결됩니다.
+
+입사 후에는 CJ ONE처럼 여러 브랜드와 채널이 얽힌 대규모 회원 시스템에서 작은 정책 변경에도 안정적으로 대응하는 코드와 테스트 구조를 만드는 데 기여하고 싶습니다. 최근 실무에 적용해온 LLM 기반 분석·자동화 경험(Claude, Gemini 등 멀티 AI 프로바이더 활용)을 백엔드 개발 생산성을 높이는 데에도 접목해보고 싶습니다.</div>
+
+        <h5>윤문 처리 내역</h5>
+        <ul>
+          <li>변경률 약 20%(문항2 기준) · 등급 A · 자체검증 6/6 통과</li>
+          <li>문두 접속사("또한"·"나아가") 제거, "~생각합니다" 3연속 반복 정리, 연결어미 뒤 불필요한 쉼표 정리 등 — 사실관계(회사명/기간/프로젝트명/성과 수치/기술스택)는 100% 원형 보존</li>
+        </ul>
+        <span class="doc-source">recruit.cj.net 원문 직접 확인 · career-description README.md · humanize-korean v1.5 fast 모드 (run_id: 2026-07-21-001)</span>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span>면접·CFT·코딩테스트 후기 리서치</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <h5>1차 면접</h5>
+        <blockquote>주의: CJ올리브네트웍스 다른 직군/연도 공개 후기 기반 — "대략 이런 분위기다" 참고용</blockquote>
+        <ul>
+          <li>난이도 2.9/5, 합격률 59%</li>
+          <li>비대면 화상, ZEP 메타버스 플랫폼, 면접관 2 대 지원자 1, 총 30분. 사전 AI 역량검사(영상 답변), 자기소개 PT(PDF 1~2장, 1~2분) 필요</li>
+          <li>기술보다 경험·인성 질문 비중 훨씬 높음(대략 9:1)</li>
+          <li>채용 담당자 팁: "성장 가능성" 중시 — GitHub 꾸준히 기록 남긴 지원자가 좋은 인상</li>
+        </ul>
+        <h5>코딩테스트</h5>
+        <ul>
+          <li>프로그래머스 플랫폼, 2시간 2~3문제. 카카오·네이버보다 쉬운 편(레벨1~2 위주, 마지막 1문제만 골드4~5급)</li>
+          <li>Java 지원 확인됨. 코딩테스트와 별도로 같은 플랫폼에서 인성검사도 진행</li>
+          <li>우선순위: 문자열/배열·스택/큐 위주 감 유지, BFS/DFS까지만 추가</li>
+        </ul>
+        <h5>CFT(인성검사)</h5>
+        <ul>
+          <li>같은 성향을 다른 문항으로 여러 번 물어 일관성 체크(라이 스케일 포함)</li>
+          <li>재입사 이력 관련(소속감/이직 성향) 축 특히 유의 — "사람·문화는 만족, 처우·성장은 별개" 프레이밍 유지</li>
+        </ul>
+        <span class="doc-source">cj-one-application-draft.md · cft-personality-test-prep.md · coding-test-practice.md</span>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span>재직자 평판 리서치 (잡플래닛·블라인드)</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <h5>평점</h5>
+        <ul>
+          <li>잡플래닛 종합 3.0/5.0 (리뷰 1,190건) — "사람들은 좋지만 업무 방식은 별로인 회사"</li>
+          <li>블라인드 종합 3.4/5.0 (399개 리뷰) — 워라밸 3.8, 급여·복지 3.3</li>
+        </ul>
+        <h5>연봉·복지</h5>
+        <ul>
+          <li>캐치 기준 평균연봉 6,263만원. 인상률은 고과 기반(S 7%/A 5%/B 3%/C 0%/D -3%)</li>
+          <li>후기 편차 큼 — "업계 평균 이하" vs "SDS 수준 이상" 둘 다 존재, 팀/직무별 차이로 추정</li>
+          <li>CJ그룹 복지는 두터움(브랜드 40% 할인, 주택자금지원, 사원아파트 등) — 단 "현금성 복지는 적다"는 지적도 있음</li>
+          <li>재택근무: 부바부, 일부 팀 풀재택</li>
+        </ul>
+        <h5 style="color:var(--bad)">개발자 성장 가능성 — 가장 중요한 시그널</h5>
+        <blockquote>블라인드: "올네는 그냥 SI회사임, 진짜 개발하려면 올영 가야 함" / "개발자 커리어 망치는 곳이 올네" — CJ올리브영과 비교하는 글 다수, 대체로 올리브영이 개발자 커리어에 더 낫다는 의견 우세</blockquote>
+        <ul>
+          <li>"기술 환경이 아직도 2000년대 초반 수준", "Docker 등 현대적 개발 인프라 부재"라는 구체적 부정 후기 다수</li>
+          <li>자체 기술 블로그 방치(2022.07 이후 업데이트 없음) — 위 커뮤니티 평판과 정합적</li>
+          <li>긍정 신호: "희소 기술 보유자에게 공격적 채용 제의", 2026년 "핵심분야 기술역량 강화" 뉴비전 공식 언급</li>
+        </ul>
+        <h5>우려 사항</h5>
+        <ul>
+          <li>SI/용역 성격 — 자사 서비스 포지션이라도 조직 전체가 SI 위주면 기술 재량권 제한적일 가능성</li>
+          <li>조직문화 부정 후기 존재("꼰대들 집합소" 등, 극단치 가능성 고려)</li>
+          <li>매각설 언급 있으나 익명 커뮤니티 출처 하나뿐 — 신뢰도 낮은 루머로 취급</li>
+        </ul>
+        <h5>종합 판단</h5>
+        <p><strong>지원은 유지, 기대치는 조정.</strong> "기술적으로 성장할 회사"라기보다 "안정적 워라밸 + 그룹 복지 + 대기업 계열 커리어" 프레임으로 접근하는 게 현실적. 2차면접·처우협의 단계에서 직접 확인할 것: (1) CJ ONE팀이 자사서비스 조직인지 SI성 파견 조직인지 (2) 실제 배포 인프라 (3) 최근 팀 이탈률.</p>
+        <span class="doc-source">cj-olive-networks-employer-research.md</span>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2 class="section-title">CJ올리브영 · 테크플랫폼센터 대규모채용 <span class="count">공식 채용사이트 직접 확인, 2026.07.21</span></h2>
+    <p class="section-note">career.oliveyoung.com에서 직접 원문을 확인한 결과, 원티드에서 스크래핑했던 "상품 메타" 등 6개 포지션과는 별개로 <strong>공식 채용사이트에는 유닛별 포지션 5개 + AI-First Track 3개 + 전문분야 5개</strong>가 게시돼 있음. 아래는 공식 사이트 기준.</p>
+
+    <div class="callout good">
+      <h2>최우선 추천</h2>
+      <p>"<strong>코어플랫폼유닛 Back-end 개발채용</strong>" — 경력 4년 이상, 담당업무가 상품·회원·프로모션·인벤토리·정산 통합 관리로 본인 6년 도메인 경험과 가장 직접적으로 겹침. 필수요건에 K8s/MSA 없음(우대사항에 Kafka/Elasticsearch/Redis만).</p>
+    </div>
+
+    <h3 style="font-size:1.05rem; margin: 0.4rem 0 0.8rem;">유닛별 포지션 5개 <span class="pill">⚠️ 유닛 간 중복지원 불가, 1개만 선택</span></h3>
+    <div class="unit-grid">
+      <div class="unit-card best">
+        <h4>코어플랫폼유닛 <span class="pill top">최우선</span></h4>
+        <div class="exp">경력 4년 이상 · <a href="https://career.oliveyoung.com/ko/o/211293" target="_blank" rel="noopener">o/211293</a></div>
+        <p>카탈로그/커스터머/인벤토리/세틀먼트 플랫폼. 상품·회원·프로모션·인벤토리·정산 데이터 통합 관리.</p>
+        <p><strong>필수</strong>: Java 또는 Kotlin, Spring, JPA/Hibernate. <strong>우대</strong>: Kafka, ElasticSearch, Redis, e-commerce 경험</p>
+      </div>
+      <div class="unit-card">
+        <h4>커머스플랫폼유닛</h4>
+        <div class="exp">경력 5년 이상 · <a href="https://career.oliveyoung.com/ko/o/211291" target="_blank" rel="noopener">o/211291</a></div>
+        <p>디스커버리/크리에이티브/커머스플랫폼/웰니스/트랜잭션서비스. 전시·상품·검색 등 온라인몰 핵심 기능.</p>
+        <p><strong>필수</strong>: MSA 환경 서비스 개발·운영. <strong>우대</strong>: Docker/K8s, MSA 구축 경험, Kafka/MQ, 대용량 트래픽</p>
+      </div>
+      <div class="unit-card">
+        <h4>엔터프라이즈플랫폼유닛</h4>
+        <div class="exp">경력 5년 이상 · <a href="https://career.oliveyoung.com/ko/o/211264" target="_blank" rel="noopener">o/211264</a></div>
+        <p>리테일/파트너Ads/페이먼트플랫폼/스토어서비스. 결제·청구매입·리테일운영·파트너연계·광고센터 로직.</p>
+        <p><strong>필수</strong>: RDBMS/NoSQL 설계·운영, 레거시 개선 경험. <strong>우대</strong>: AWS/클라우드, 이커머스·오프라인 유통</p>
+      </div>
+      <div class="unit-card">
+        <h4>검색 플랫폼 개발자</h4>
+        <div class="exp">경력 5년 이상 · <a href="https://career.oliveyoung.com/ko/o/211248" target="_blank" rel="noopener">o/211248</a></div>
+        <p>온/오프라인 통합 검색. OpenSearch/Elasticsearch 기반 분산 검색, 시맨틱·벡터·하이브리드·Agentic 검색.</p>
+        <p><strong>필수</strong>: OpenSearch/ES 상용 운영 경험. <strong>우대</strong>: LLM/Embedding 활용 검색·추천 고도화</p>
+      </div>
+      <div class="unit-card">
+        <h4>Global Software Engineer</h4>
+        <div class="exp">경력 3년 이상(시니어 7년+) · <a href="https://career.oliveyoung.com/ko/o/211267" target="_blank" rel="noopener">o/211267</a></div>
+        <p>글로벌엔지니어링센터. US커머스/크로스보더커머스/글로벌코어플랫폼 중 1·2지망 선택.</p>
+        <p><strong>필수</strong>: 클라우드 개발·마이그레이션 경험. 서류 후 사전코딩테스트 별도 발송. 외국인은 TOPIK 5급 필요</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem; margin: 1.6rem 0 0.8rem;">전문분야 백엔드 (경력 5~8년, 상시)</h3>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>포지션</th><th>경력</th><th>링크</th></tr></thead>
+        <tbody>
+          <tr><td>Back-end Engineer (추천)</td><td>5년+</td><td><a href="https://career.oliveyoung.com/ko/o/213410" target="_blank" rel="noopener">o/213410</a></td></tr>
+          <tr><td>Back-end Engineer (광고/DSP)</td><td>5년+</td><td><a href="https://career.oliveyoung.com/ko/o/219564" target="_blank" rel="noopener">o/219564</a></td></tr>
+          <tr><td>Back-end Engineer (광고/AD-Server)</td><td>8년+</td><td><a href="https://career.oliveyoung.com/ko/o/219604" target="_blank" rel="noopener">o/219604</a></td></tr>
+          <tr><td>Backend Engineer (공통영역개선)</td><td>7년+</td><td><a href="https://career.oliveyoung.com/ko/o/226419" target="_blank" rel="noopener">o/226419</a></td></tr>
+          <tr><td>Windows Application Engineer (POS 시스템)</td><td>5년+</td><td><a href="https://career.oliveyoung.com/ko/o/224469" target="_blank" rel="noopener">o/224469</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-note" style="margin-top:0.8rem;">광고/추천/POS 계열은 도메인이 본인 경력(상품·주문·프로모션)과 결이 달라 우선순위 낮음 — 참고용으로만 나열, 상세 리서치는 아직 안 함.</p>
+
+    <details class="doc" style="margin-top:1.2rem;">
+      <summary><span>[AI-First Track] 3개 포지션 — 대규모채용과 중복지원 불가</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <p class="sub">접수 2026.07.20 17:00 ~ 08.09 23:59 (D-19) · 근무지 서울 용산구 CJ올리브영 본사</p>
+        <ul>
+          <li><a href="https://career.oliveyoung.com/ko/o/228298" target="_blank" rel="noopener">Core Platform Engineer (Back-End)</a> — 경력 2년+</li>
+          <li><a href="https://career.oliveyoung.com/ko/o/228299" target="_blank" rel="noopener">Commerce Platform Engineer (Front-End)</a> — 경력 2년+</li>
+          <li><a href="https://career.oliveyoung.com/ko/o/228300" target="_blank" rel="noopener">AI Recommendation System Engineer</a> — 경력 2년+</li>
+        </ul>
+        <h5>Core Platform Engineer (Back-End) 상세 — 원문 직접 확인 완료</h5>
+        <p>올리브영 고효율 플랫폼 핵심 엔진을 AI Native 관점에서 개발·최적화. 상품·회원·프로모션·인벤토리·정산 데이터를 AI 기반으로 통합 관리, 대용량·고가용성 MSA 기반 핵심 API 설계.</p>
+        <div class="stack-tags"><span>Java</span><span>Spring Boot</span><span>Kotlin</span><span>Python</span><span>Go</span><span>PyTorch</span><span>TensorFlow</span><span>LLM Frameworks</span><span>Agentic Workflows</span><span>AWS</span><span>Kubernetes</span><span>Docker</span><span>MySQL</span><span>Redis</span><span>Kafka</span></div>
+        <h5>전형 (경력 2년 이상)</h5>
+        <ol>
+          <li>서류접수 (07.20~08.09) — "AI 전형 지원 이유" 심사</li>
+          <li>AI Native Verification Test (07.24~08.17) — 웹 IDE 기반 실무형 과제</li>
+          <li>1차 인터뷰 — 과제 리뷰, AI 활용 전략 토론 (8~9월)</li>
+          <li>온라인 인성검사 + 2차 인터뷰(화이트보드 테스트) (9월)</li>
+          <li>레퍼런스 체크 &amp; 처우협의 (9~10월)</li>
+        </ol>
+        <p><strong style="color:var(--good)">유리한 점</strong>: "AI 전형 지원 이유" 심사 + 과제 도구로 Claude/Codex/Gemini 사용 — CJ ONE 자소서 4번 문항에 이미 쓴 "멀티 AI 프로바이더 활용 경험"이 핵심 무기가 됨.</p>
+        <p><strong style="color:var(--bad)">불리한 점</strong>: K8s는 인프라 스택에 포함(CJ ONE과 동일 갭). PyTorch/TensorFlow 등 딥러닝 실무 경험 없음. 8~10월까지 이어지는 긴 전형과 웹 IDE 과제 테스트 부담.</p>
+        <blockquote>⚠️ CJ계열사(자회사 포함) 재직자는 지원 제한. 대규모채용(코어플랫폼유닛 등)과 동시 지원 불가 — 둘 중 하나만 선택.</blockquote>
+        <span class="doc-source">career.oliveyoung.com 원문 직접 확인, 2026.07.21</span>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span>원티드 스크래핑 목록 (참고용, 공식 사이트와 별개 확인)</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <p class="sub">아래는 이전에 원티드에서 확인한 6개 포지션. 공식 사이트 목록과 제목이 다르게 매칭되어 동일 포지션인지 확정 못함 — 지원 전 반드시 공식 사이트 기준으로 재확인할 것.</p>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>포지션</th><th>경력</th><th>마감</th><th>링크</th></tr></thead>
+            <tbody>
+              <tr><td>백엔드 개발자(상품 메타)</td><td>4~14년</td><td>상시</td><td><a href="https://www.wanted.co.kr/wd/216290" target="_blank" rel="noopener">wd/216290</a></td></tr>
+              <tr><td>백엔드 개발자(오프라인 매장 서비스)</td><td>5년+</td><td>상시</td><td><a href="https://www.wanted.co.kr/wd/231904" target="_blank" rel="noopener">wd/231904</a></td></tr>
+              <tr><td>커머스서비스개발팀 백엔드</td><td>3년+</td><td>⚠️ 표기 2024.05.31</td><td><a href="https://www.wanted.co.kr/wd/182064" target="_blank" rel="noopener">wd/182064</a></td></tr>
+              <tr><td>버티컬서비스 백엔드</td><td>6년+</td><td>⚠️ 표기 2024.06.30</td><td><a href="https://www.wanted.co.kr/wd/143628" target="_blank" rel="noopener">wd/143628</a></td></tr>
+              <tr><td>풀필먼트/물류(WMS)</td><td>5년+</td><td>상시</td><td><a href="https://www.wanted.co.kr/wd/236664" target="_blank" rel="noopener">wd/236664</a></td></tr>
+              <tr><td>리테일플랫폼개발팀</td><td>3년+</td><td>상시</td><td><a href="https://www.wanted.co.kr/wd/143836" target="_blank" rel="noopener">wd/143836</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </details>
+
+    <details class="doc">
+      <summary><span>CJ올리브영 조직 평판</span><span class="chevron">▸</span></summary>
+      <div class="doc-body">
+        <h5>평점</h5>
+        <ul>
+          <li>잡코리아 종합 4.1/5.0 — 세부(100점 환산 추정): 급여 35, 워라밸 44, 조직문화 51, 복리후생 59, 고용안정성 66, <strong>커리어성장 74</strong>(6개 항목 중 최고)</li>
+          <li>캐치 재직자 추천율 58%</li>
+          <li>잡플래닛 구법인(23194) 리뷰 5,908건·면접후기 1,821건(난이도 2.7), 신법인(442105, 2023 물적분할 이후) 리뷰 309건·면접후기 7건(난이도 3.0)</li>
+        </ul>
+        <h5>워라밸·연봉</h5>
+        <ul>
+          <li>블라인드에 "워라밸 극악" 반복 언급 있으나 <strong>전략 시즌(성수기) 한정</strong> 맥락. 개발직군 후기는 "재택 팀바팀(주 2~5일), 근무강도 괜찮음, 상여 잘 나옴"으로 상대적으로 긍정적</li>
+          <li>연봉: 대리 1년차 약 5,500만원, 대졸초임 CJ그룹 공채 기준 4,300~4,600만(스니펫 기준, 참고용)</li>
+          <li>단점 반복 언급: 과도한 보고 문화, 정치질/라인타기, 경쟁문화 과열, 구내식당 없음(CJ 계열 40% 할인 등은 동일 적용)</li>
+        </ul>
+        <h5>기술 문화 — CJ올리브네트웍스 대비</h5>
+        <p><strong>oliveyoung.tech 기술블로그 실측: 월평균 약 3건 발행</strong>. 최근 예시 — "프레임워크에 구애받지 않는 통합 백오피스 구축하기"(07.14), "옴니채널 재고 정합성 인벤토리 파이프라인 구축기"(07.01), "상품 모니터링 진화기"(06.30), "45분 배치→준실시간 Kafka 전환기"(04.22), "MSA 환경 도메인 데이터 연동기"(03.18), "카오스 엔지니어링"(03.30) — Kafka·MSA·카오스엔지니어링·AI 협업 프로세스 등 최신 스택을 꾸준히 다룸. CJ올리브네트웍스(2022.07 이후 방치)와 뚜렷이 대비.</p>
+        <p>CJ올리브네트웍스 재직자 평판의 "올네는 SI회사, 진짜 개발하려면 올영 가야 함"이라는 발언과 정합 — <strong>자사서비스 개발 조직 vs SI성 조직</strong> 구도가 기술블로그 활성도로도 뒷받침됨.</p>
+        <span class="doc-source">cj-olive-young-positions-research.md</span>
+      </div>
+    </details>
+  </section>
+
+  <section>
+    <h2 class="section-title">지원 전략 체크리스트</h2>
+    <div class="card">
+      <h3>CJ ONE (진행 중)</h3>
+      <p class="sub">마감 07.31 · 제출 목표 07.27~28</p>
+      <ul>
+        <li>recruit.cj.net 로그인해서 실제 문항 번호/제목 맞추기</li>
+        <li>코딩테스트 단계 존재 — 서류 통과 전 감 유지 필요</li>
+        <li>Kubernetes 갭 방어 논리 준비 완료, 개념 학습은 진행 중</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>올리브영 · 코어플랫폼유닛 (검토)</h3>
+      <p class="sub">상시채용, 서두를 필요 없음 · 유닛 간 중복지원 불가 — 1개만 선택</p>
+      <ul>
+        <li>o/211293 원문 재확인, 이력서에 프로젝트 상세 기술 필수(첨부 요구)</li>
+        <li>이력서는 CJ ONE용 재사용 가능, 자소서만 "상품/프로모션/인벤토리" 중심으로 재구성</li>
+        <li>커머스/엔터프라이즈/검색/글로벌 유닛과 비교해 최종 1개 확정 필요</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>올리브영 · AI-First Track (판단 필요)</h3>
+      <p class="sub">마감 08.09 · 대규모채용과 중복 지원 불가 — 택1</p>
+      <ul>
+        <li>"AI 전형 지원 이유" 에세이 초안 — 멀티 AI 에이전트 워크플로우 실사용 경험 중심으로 작성</li>
+        <li>웹 IDE 기반 과제 테스트 부담 가능 여부 판단(9~10월까지 이어지는 긴 전형 감안)</li>
+        <li>코어플랫폼유닛(경력요건 넓고 전형 상대적으로 가벼움) vs AI-First(전형 무겁지만 AI 경험 직접 어필) 중 하나 확정</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>career-move 로컬 대시보드 · private repo · CJ 전용 통합 뷰 · 소스: job-posting-scan-2026-07-21.md · cj-one-application-draft.md · cj-olive-networks-employer-research.md · cj-olive-young-positions-research.md · career.oliveyoung.com 원문 직접 확인 · 2026.07.21 작성</footer>
+
+</div>

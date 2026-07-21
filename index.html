@@ -415,6 +415,33 @@
     font-size: 0.78rem;
   }
 
+  /* ---- Doc viewer ---- */
+  .doc-card { margin-bottom: 1rem; }
+  .doc-body { font-size: 0.88rem; margin-top: 1rem; }
+  .doc-body h4 { font-family: var(--font-display); font-size: 1.02rem; margin: 1.3rem 0 0.5rem; color: var(--ink); }
+  .doc-body h4:first-child { margin-top: 0; }
+  .doc-body h5 { font-size: 0.85rem; margin: 1rem 0 0.35rem; color: var(--accent-strong); text-transform: uppercase; letter-spacing: 0.04em; }
+  .doc-body p { margin: 0.5rem 0; color: var(--ink); }
+  .doc-body ul, .doc-body ol { margin: 0.4rem 0; padding-left: 1.3rem; }
+  .doc-body li { margin: 0.3rem 0; }
+  .doc-body blockquote { margin: 0.7rem 0; padding: 0.6rem 0.9rem; background: var(--surface-2); border-left: 3px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 0.83rem; }
+  .doc-body code { font-family: var(--font-mono); background: var(--surface-2); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.85em; }
+  .doc-body .quote-text { white-space: pre-line; background: var(--surface-2); border-radius: 8px; padding: 0.9rem 1rem; font-size: 0.86rem; line-height: 1.65; margin: 0.6rem 0; }
+  .doc-body .table-scroll { margin: 0.6rem 0; }
+  .doc-body table { font-size: 0.8rem; min-width: 0; }
+  .doc-body .doc-meta { color: var(--muted); font-size: 0.82rem; margin: 0.2rem 0 0.8rem; }
+  .doc-body .strong-gap { color: var(--accent-strong); font-weight: 600; }
+  .doc-source {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    background: var(--surface-2);
+    border-radius: 6px;
+    padding: 0.3rem 0.6rem;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; }
   }
@@ -432,26 +459,308 @@
       <p>Java/Spring 백엔드 6년차 · E-커머스 도메인 유지, 규모·처우 상승 목표. 커머스웨어 재직 중 진행.</p>
     </div>
     <div style="position:relative;">
-      <div class="ring" style="--pct:41"><div class="ring-inner"><strong>41%</strong><span>완료</span></div></div>
+      <div class="ring" style="--pct:69"><div class="ring-inner"><strong>69%</strong><span>완료</span></div></div>
     </div>
   </header>
 
   <div class="stat-row">
-    <span class="stat-chip">완료 <b>13</b></span>
-    <span class="stat-chip">진행 필요 <b>19</b></span>
+    <span class="stat-chip">완료 <b>22</b></span>
+    <span class="stat-chip">진행 필요 <b>10</b></span>
     <span class="stat-chip">전체 항목 <b>32</b></span>
-    <span class="stat-chip">현재 단계 <b>1~2주차</b></span>
+    <span class="stat-chip">현재 단계 <b>CJ올리브네트웍스 지원 준비</b></span>
   </div>
 
   <div class="callout">
     <h2>지금 바로 할 일</h2>
     <ul>
-      <li><span class="tag">1</span>원티드/리멤버 등 이력서 빌더에 최신 내용 동기화</li>
-      <li><span class="tag">4</span>LinkedIn 프로필을 career-description 기준으로 최신화</li>
-      <li><span class="tag">4</span>기술 블로그 최근 활동 확인, 필요하면 글 1~2개 추가</li>
-      <li><span class="tag">3</span>타겟 회사 공고 스캔 시작 (원티드/사람인/잡코리아)</li>
+      <li><span class="tag">CJ</span>recruit.cj.net 로그인 후 실제 자소서 문항 확인 · 제출 목표 07.27~28 (마감 07.31)</li>
+      <li><span class="tag">2</span>CS 기본기 · 시스템 설계 답변 소리 내어 설명 연습 (초안은 완료돼 있음)</li>
+      <li><span class="tag">2</span>코딩테스트 실전 문제풀이 시작 — 문자열/배열 → 스택/큐 → BFS/DFS 순</li>
+      <li><span class="tag">2</span>Kubernetes 기초 개념 학습 (`study-plan.md` 5번) — 서류 제출 전 1회독 목표</li>
     </ul>
   </div>
+
+  <section>
+    <h2 class="section-title">CJ올리브네트웍스 전형 단계별 준비 현황 <span class="count">마감 2026.07.31 · CJ ONE 회원 서비스 백엔드</span></h2>
+    <div class="track">
+      <div class="stop">
+        <div class="stop-marker" style="--pct:90"></div>
+        <div class="stop-card">
+          <details open>
+            <summary class="stop-head">
+              <h3>1 · 서류전형</h3>
+              <div class="meta"><span class="pct-pill done">준비 거의 완료</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:90%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">자소서 4문항 초안 완료 <span class="note">cj-one-application-draft.md</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">자격요건 대조 완료 — Kubernetes만 유일한 필수요건 갭</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">recruit.cj.net 로그인해서 실제 문항 번호·제목 맞추기 <span class="note">본인 확인 필요</span></span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-marker" style="--pct:40"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>2 · 코딩테스트</h3>
+              <div class="meta"><span class="pct-pill">리서치 완료</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:40%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">실제 출제 유형·난이도 리서치 완료 <span class="note">coding-test-practice.md — 프로그래머스 플랫폼, 2시간 2~3문제, 카카오/네이버보다 쉬움</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">문자열/배열·스택/큐·BFS/DFS 우선순위로 실전 문제풀이 <span class="note">본인 실행 필요</span></span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-marker" style="--pct:60"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>3 · 1차 면접</h3>
+              <div class="meta"><span class="pct-pill">후기 리서치 완료</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:60%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">면접 형식·질문 성향 리서치 완료 <span class="note">cj-one-application-draft.md "4. 면접 후기 리서치" — 경험·인성 질문 비중 높음(9:1)</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">자기소개 PT 초안 완료 <span class="note">cj-one-self-intro-pt.md</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">CS기본기·시스템설계 소리 내어 답변 연습</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-marker" style="--pct:90"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>4 · CFT(인성검사)</h3>
+              <div class="meta"><span class="pct-pill done">준비 완료</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:90%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">성향 축 5개 정리 완료 <span class="note">cft-personality-test-prep.md — 재입사 이력 관련(소속감/이직 성향) 축 특히 유의</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">검사 전날 컨디션 관리만 남음</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>5 · 2차 면접</h3>
+              <div class="meta"><span class="pct-pill">준비 자료 없음</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:0%"></i></div>
+            <ul class="item-list">
+              <li class="pending"><span class="box"></span><span class="txt">1차 면접 결과 나오면 임원면접 특화 준비 필요 — 아직 착수 전</span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="stop">
+        <div class="stop-marker" style="--pct:70"></div>
+        <div class="stop-card">
+          <details>
+            <summary class="stop-head">
+              <h3>6 · 평판조회 · 처우협의</h3>
+              <div class="meta"><span class="pct-pill">전략 정리 완료</span><span class="chevron">▸</span></div>
+            </summary>
+            <div class="bar"><i style="width:70%"></i></div>
+            <ul class="item-list">
+              <li class="done"><span class="box"></span><span class="txt">평판조회 대응 전략 완료 <span class="note">offboarding-guide.md — 재입사 이력 특성상 "사전 동의 후 진행" 요청 권장</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">희망 연봉 레인지 확정 <span class="note">6,500만~7,000만, 목표선 6,750만 — comp-notes-private.md</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">평판조회 응해줄 동료/상사 실제 언질 <span class="note">본인 실행 필요</span></span></li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">CJ 문서 원문 <span class="count">md 파일 열지 않고 여기서 바로 읽기</span></h2>
+
+    <details class="doc-card">
+      <summary class="stop-head">
+        <h3>자소서 초안 &amp; 자격요건 대조</h3>
+        <div class="meta"><span class="pct-pill">4문항 + 대조표</span><span class="chevron">▸</span></div>
+      </summary>
+      <div class="doc-body">
+        <p class="doc-meta">접수기간 2026.06.16–2026.07.31 · 근무지 서울 용산구 CJ올리브네트웍스 본사<br>전형: 서류전형 → 코딩테스트 → 1차면접 → CFT(인성검사) → 2차면접 → 평판조회·처우협의 → 채용검진 → 최종합격</p>
+
+        <h5>담당 업무 (공고 원문)</h5>
+        <ul>
+          <li>회원 서비스 플랫폼의 설계, 개발 및 운영</li>
+          <li>가입/로그인/인증/계정관리/개인정보관리 등 회원 생애주기 전반 서비스 개발, 안정적이고 확장 가능한 인증/인가 체계 구축</li>
+          <li>CJ ONE: 올리브영·뚜레쥬르·온스타일 등에서 시작한 CJ그룹 통합 회원·멤버십 포인트 시스템, 현재 메가커피·신세계면세점 등 제휴 포함 <strong>3천만+ 사용자</strong> 대상 서비스</li>
+        </ul>
+
+        <h4>1. 자격요건 대조</h4>
+        <h5>필수 지원자격</h5>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>요건</th><th>본인 현황</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td>백엔드 개발 경력 5~10년</td><td>6년차, 정확히 부합</td><td>그대로 어필</td></tr>
+              <tr><td>Java 기반 서비스 개발</td><td>Java 6년+</td><td>강점</td></tr>
+              <tr><td>Spring/Spring Boot 기반 개발</td><td>Spring 6년+, Fitness In Service는 Spring Boot 4.0</td><td>강점</td></tr>
+              <tr><td>RESTful API 설계·개발</td><td>주문상세/고객자산/사은행사/선물받기 API 등 다수</td><td>강점</td></tr>
+              <tr><td>RDBMS(MySQL/Oracle/PostgreSQL)</td><td>Oracle·PL/SQL 5년+, MariaDB 사용</td><td>Oracle은 정확히 일치, MySQL/PostgreSQL은 "원리는 동일하게 적용 가능"으로 방어</td></tr>
+              <tr><td>대규모 서비스 설계·구축·운영</td><td>더현대·투홈 NCP 통합(현대백화점그룹 대형 플랫폼)</td><td>강점, 단 "고객사 플랫폼을 벤더사 소속으로 운영"했음을 정직하게 기술</td></tr>
+              <tr><td><span class="strong-gap">Kubernetes 활용 서비스 개발</span></td><td><span class="strong-gap">경험 없음/제한적</span>(Docker·Nginx까지만)</td><td><span class="strong-gap">가장 큰 갭.</span> 허위 기재 금지 — "Docker 운영 경험 있음, K8s는 개념 학습 중"으로 정직하게</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5>우대사항 중 방어 가능한 항목</h5>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>항목</th><th>본인 현황</th></tr></thead>
+            <tbody>
+              <tr><td>OAuth2.1/JWT/Session/Cookie 인증</td><td>JWT Access/Refresh 직접 설계(Fitness In Service), Redis 세션 — 강점</td></tr>
+              <tr><td>Redis 활용</td><td>세션 관리에 사용 — 있음. "Cluster 운영 경험"은 없음, 과장 금지</td></tr>
+              <tr><td>DB 모델링/SQL 최적화</td><td>PC몰 쿼리 튜닝(3~5초→1~2초), Oracle PL/SQL 튜닝 — 강점</td></tr>
+              <tr><td>CI/CD·DevOps</td><td>Jenkins 기반 CI/CD 경험 있음. 공고 스택(Gitlab/ArgoCD)과 다르지만 "설계 원리"로 방어</td></tr>
+              <tr><td>MSA/분산시스템</td><td>경험 없음 — Fitness In Service는 멀티모듈 모놀리식. 정직하게 인정</td></tr>
+              <tr><td>OAuth2 Authorization Server/OIDC/SSO</td><td>경험 없음 — Kakao OAuth는 클라이언트 연동일 뿐, 과장 금지</td></tr>
+              <tr><td>대규모 트래픽(수백만 회원) 운영</td><td>정확한 수치 모름 — 자소서에 구체 숫자 기재 금지</td></tr>
+              <tr><td>기술 리딩/프로젝트 리딩</td><td>기간계 고도화 AA 역할, ExtJS 교육 진행 — 강점</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>결론: 필수요건은 충족. <strong>Kubernetes 실무 경험 부재</strong>가 유일한 필수요건 갭이고, 인증서버(OAuth2 AS/OIDC/SSO)·MSA·Redis Cluster는 미보유. 지원 권장, 갭은 정직하게 인정하고 "무엇으로 메꿀지" 제시하는 방향으로 작성.</p>
+
+        <h4>2. 자기소개서 초안 (4문항)</h4>
+        <p class="doc-meta">실제 recruit.cj.net 로그인 후 노출되는 정확한 문항 번호·제목으로 맞춰야 함 — 아래는 "지원동기/직무역량/문제해결/포부" 통상 구조 초안</p>
+
+        <h5>문항 1 · 지원동기</h5>
+        <div class="quote-text">E-커머스 백엔드 엔지니어로 6년간 상품·주문·프로모션·클레임 도메인을 설계·개발·운영하며, 대규모 트래픽 환경에서 안정성과 성능을 동시에 확보하는 일에 강점을 쌓아왔습니다. 최근에는 더현대·투홈 플랫폼 통합 프로젝트에서 고객자산(예치금, H.Point, RSVP, 바우처) API를 직접 담당하며, 포인트·적립·바우처처럼 사용자 신뢰와 직결되는 도메인을 다루는 일의 무게를 체감했습니다.
+
+CJ ONE은 3천만 명 이상의 회원을 대상으로 한 통합 멤버십·포인트 시스템으로, 제가 다뤄온 "고객 자산" 도메인과 본질적으로 맞닿아 있습니다. 여러 브랜드·채널을 아우르는 대규모 트랜잭션을 안정적으로 처리하는 시스템을 만드는 일에 제 경험을 이어가고 싶어 지원했습니다.</div>
+
+        <h5>문항 2 · 직무 역량</h5>
+        <div class="quote-text">[대규모 트래픽·트랜잭션 처리 경험]
+더현대·투홈 플랫폼 통합(NCP 구축)에서 주문상세·고객자산(예치금/H.Point/RSVP/바우처)·사은행사·선물받기 API를 담당했습니다. 오픈 직전 바우처 정책이 변경되며 옵션 포맷이 가변화되어 SUBSTR 기반 파싱 로직에서 오류가 발생했을 때, 영향받는 쿼리를 전수 조사하고 정규식 기반으로 일괄 교체한 뒤 유/무 케이스를 모두 검증해 서비스 중단 없이 반영했습니다.
+
+[성능 최적화 경험]
+PC몰 리뉴얼 프로젝트에서는 응답속도가 최대 4~5초까지 걸리던 주요 화면을 쿼리 튜닝과 Spring Cache 적용으로 1~2초대까지 단축했습니다. 카드즉시할인 프로모션 개발 시에는 TV·ARS·웹/앱 등 다중 채널에 걸친 영향 범위를 사전에 검증해 사이드이펙트 없이 안정적으로 오픈했습니다.
+
+[클라우드·모바일 서비스 개발 경험]
+개인 프로젝트 'Fitness In Service'에서는 Spring Boot 멀티모듈(BO/MO/Batch) 구조로 회원 앱(MO) 전체를 직접 설계·개발했습니다. JWT 인증, Redis 세션, Kakao OAuth, Toss Payments 결제, SSE 실시간 알림까지 AWS EC2·Docker·Nginx 환경에 배포해 실제 서비스로 운영 중입니다. 기획부터 배포까지 전 과정을 책임진 경험을 통해 모바일 사용자 관점의 API 설계 감각을 키웠습니다.</div>
+
+        <h5>문항 3 · 문제해결/협업 사례</h5>
+        <div class="quote-text">기간계 시스템 고도화 프로젝트에서 Adobe Flex 기반 레거시 시스템을 ExtJS로 전환하는 작업에서 AA(Application Architect) 역할을 맡았습니다. 단순 기술 전환을 넘어 프로젝트 참여 인원을 대상으로 ExtJS 교육을 직접 진행하고, 코어·공통 모듈을 설계해 팀 전체가 일관된 방식으로 개발할 수 있는 기반을 만들었습니다. 오류·기술 문의 창구 역할도 겸하며 신규 시스템이 무중단으로 안정 운영되는 데 기여했습니다.
+
+이 경험을 통해, 좋은 백엔드 개발자는 코드를 잘 짜는 것뿐 아니라 팀이 같은 기준으로 일할 수 있는 구조를 만드는 사람이라는 것을 배웠습니다.</div>
+
+        <h5>문항 4 · 입사 후 포부</h5>
+        <div class="quote-text">CJ ONE처럼 다수의 브랜드·채널이 얽힌 대규모 회원 시스템에서는 작은 정책 변경 하나가 여러 서비스에 파급되는 경우가 많다는 것을 이번 프로젝트들을 통해 체감했습니다. 입사 후에는 이런 변경에 안정적으로 대응할 수 있는 코드와 테스트 구조를 만드는 데 기여하고, 나아가 최근 관심을 두고 있는 LLM 기반 분석/자동화 경험(Claude, Gemini 등 멀티 AI 프로바이더 활용)을 백엔드 개발 생산성 향상에도 접목해보고 싶습니다.</div>
+
+        <h4>3. 제출 전 체크리스트</h4>
+        <ul class="item-list">
+          <li class="pending"><span class="box"></span><span class="txt">recruit.cj.net "My Page" 로그인 후 실제 문항 번호/제목 맞추기 <span class="note">본인 확인 필요</span></span></li>
+          <li class="pending"><span class="box"></span><span class="txt">코딩테스트 단계 존재 — 서류 통과 전 감 유지</span></li>
+          <li class="done"><span class="box"></span><span class="txt">Kubernetes 갭 방어 논리 준비 완료</span></li>
+          <li class="pending"><span class="box"></span><span class="txt">"100만+/수백만 회원" 구체 수치는 자소서에 넣지 않기 <span class="note">허위 기재 리스크</span></span></li>
+          <li class="pending"><span class="box"></span><span class="txt">이력서는 wanted-remember-resume-draft.md 경력사항 재사용, 고객자산 API + JWT/Redis 최상단 배치</span></li>
+          <li class="pending"><span class="box"></span><span class="txt">마감 07.31 — 제출 목표 07.27~28</span></li>
+        </ul>
+
+        <h4>4. 면접 후기 리서치 (2026.07.20, 잡플래닛/velog 공개 후기 기준)</h4>
+        <blockquote>주의: CJ올리브네트웍스 다른 직군/연도 공개 후기 기반 — 이 공고와 정확히 같은 프로세스라는 보장은 없음. "대략 이런 분위기다" 참고용</blockquote>
+        <ul>
+          <li><strong>난이도/합격률</strong>: 면접난이도 2.9/5, 합격률 59% — 극단적으로 어려운 편은 아님</li>
+          <li><strong>1차 면접 형식</strong>(2025년 후기): 비대면 화상, ZEP 메타버스 플랫폼, 면접관 2 대 지원자 1, 총 30분. 사전 AI 역량검사(영상 답변), 자기소개 PT(PDF 1~2장, 1~2분) 필요</li>
+          <li><strong>질문 성향</strong>: 기술보다 경험·인성 질문 비중 훨씬 높음(대략 9:1) — "왜 그렇게 판단했는지"를 깊게 봄</li>
+          <li><strong>채용 담당자 팁</strong>(CJ 뉴스룸 인터뷰): "성장 가능성" 중시 — GitHub 꾸준히 기록 남긴 지원자가 좋은 인상 준 사례. 본인 GitHub·기술 블로그가 이미 이 포인트 부합</li>
+          <li><strong>자기소개 PT</strong>: 1~2분/1~2장 PDF 준비 필요 — 초안 완료(아래 카드 참고)</li>
+        </ul>
+
+        <span class="doc-source">cj-one-application-draft.md</span>
+      </div>
+    </details>
+
+    <details class="doc-card">
+      <summary class="stop-head">
+        <h3>CFT(인성검사) 대비</h3>
+        <div class="meta"><span class="pct-pill done">성향 축 5개</span><span class="chevron">▸</span></div>
+      </summary>
+      <div class="doc-body">
+        <p>대기업 인성검사는 대부분 "같은 성향을 다른 문항으로 여러 번 물어서 일관되는지" 보는 구조(사회적 바람직성 척도/라이 스케일 포함). "좋아 보이는 답"을 고르지 말고, 본인 성향을 몇 개 축으로 미리 정리해두고 그 축에서 안 벗어나게 답하는 게 전략.</p>
+
+        <h5>본인 성향 축 정리</h5>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>축</th><th>본인 성향(근거)</th><th>CFT 예상 문항</th></tr></thead>
+            <tbody>
+              <tr><td><span class="strong-gap">조직 충성도/이직 성향</span></td><td>재입사 이력 있음 — "사람·문화는 만족, 처우·성장은 별개" 프레이밍 확정. <strong>가장 예민하게 체크될 가능성 높은 축</strong></td><td>"소속감이 강한 편이다" / "더 나은 조건이면 언제든 이직" — 둘 다 극단 긍정하면 모순. "소속감은 있지만 처우·성장은 별개"톤 유지</td></tr>
+              <tr><td>책임감/오너십</td><td>Fitness In Service 기획~배포 전 과정 단독 수행, 기간계 고도화 AA 역할</td><td>"맡은 일은 끝까지 책임진다" — 자연스럽게 긍정 가능</td></tr>
+              <tr><td>협업 스타일</td><td>ExtJS 교육 직접 진행, 코어/공통 모듈 설계 — "주도해서 구조 만드는" 스타일</td><td>"주도적으로 의견을 낸다"에 긍정 / "다수 의견에 맞춘다"는 중립 정도로, 극단 긍정은 모순</td></tr>
+              <tr><td>문제 상황 대응</td><td>바우처 정책 변경 대응(오픈 직전, 전수조사+정규식 일괄교체) — 압박 상황 체계적 접근</td><td>"예상 못한 문제에 침착하게 대응" — 근거 있는 긍정 가능</td></tr>
+              <tr><td>안정성/규칙 준수</td><td>회사코드 반출 금지 등 원칙 지키는 태도 확인됨</td><td>"규칙과 절차를 중요하게 생각한다" — 긍정해도 무리 없음</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h5>준비 체크리스트</h5>
+        <ul class="item-list">
+          <li class="pending"><span class="box"></span><span class="txt">위 5개 축이 진짜 본인 성향 맞는지 스스로 점검</span></li>
+          <li class="pending"><span class="box"></span><span class="txt">검사 직전 "정답 맞히기"로 접근하지 않기 — 매번 계산하며 답하면 일관성 깨짐</span></li>
+          <li class="pending"><span class="box"></span><span class="txt">재입사 이력 관련 문항(소속감/이직 성향) 특히 유의 — 자소서·면접 답변과 결 맞추기</span></li>
+          <li class="pending"><span class="box"></span><span class="txt">검사 전날 컨디션 관리(충분한 수면)</span></li>
+        </ul>
+
+        <p>CFT 이후: 면접에서 인성검사 결과 관련 질문 나올 수 있음 — 위 5개 축을 면접 답변 준비할 때도 같은 톤으로 유지할 것.</p>
+
+        <span class="doc-source">cft-personality-test-prep.md</span>
+      </div>
+    </details>
+
+    <details class="doc-card">
+      <summary class="stop-head">
+        <h3>코딩테스트 실전 대비</h3>
+        <div class="meta"><span class="pct-pill">CJ 유형 리서치 포함</span><span class="chevron">▸</span></div>
+      </summary>
+      <div class="doc-body">
+        <h5>CJ올리브네트웍스 코딩테스트 정보 (2026.07.21 리서치)</h5>
+        <blockquote>직무별로 상이할 수 있음, 서류 통과 후 실제 안내 공지가 기준</blockquote>
+        <ul>
+          <li><strong>형식</strong>: 프로그래머스 플랫폼, 2시간에 2~3문제(Software Engineer 계열 후기는 2시간 3문제)</li>
+          <li><strong>난이도</strong>: 카카오·네이버보다 쉬운 편. 앞 1~2문제 프로그래머스 레벨1~2/백준 실버1~2급, 마지막 문제 골드4~5급</li>
+          <li><strong>언어</strong>: Java 지원 확인됨(당일 선택 가능 언어 4~5개로 제한된다는 후기 있으나 Java는 대부분 포함)</li>
+          <li><strong>함께 진행</strong>: 코딩테스트와 별도로 같은 플랫폼에서 인성검사도 진행 — 시간 여유 두고 응시</li>
+        </ul>
+        <p>→ 우선순위: <strong>문자열/배열·스택/큐 위주로 감 유지</strong>, 마지막 한 문제 대비로 <strong>BFS/DFS</strong>까지만 추가로 다지면 충분. DP·그리디는 우선순위 낮춰도 됨.</p>
+
+        <h5>유형별 연습 순서 (전체 5개 유형, 우선순위 순)</h5>
+        <ol>
+          <li><strong>문자열/배열</strong> — 프로그래머스 "완주하지 못한 선수/위장/베스트앨범", 백준 1920/2941. HashMap을 언제 O(n)으로 쓰는지, 정렬이 왜 필요한지 구분해서 설명</li>
+          <li><strong>스택/큐</strong> — 백준 1874/2493/11866, 프로그래머스 "기능개발/프로세스". "왜 배열 대신 스택/큐인가"를 시간복잡도로 설명</li>
+          <li><strong>BFS/DFS</strong> — 백준 2178/11724/1260, 프로그래머스 "타겟 넘버/네트워크/여행경로". BFS=최단거리류, DFS=모든경로 탐색류 기준 먼저 말하기</li>
+          <li><strong>DP 기초</strong> — 백준 1463/1932/2579/11726. 점화식을 먼저 쓰고 코드로 옮기는 순서 연습</li>
+          <li><strong>그리디</strong> — 백준 1931/11047/1541, 프로그래머스 "체육복/조이스틱". "왜 그리디로 풀리는가" 근거 설명 연습</li>
+        </ol>
+
+        <h5>문제 풀 때마다 하는 "설명 연습" 4단계</h5>
+        <ol>
+          <li>문제 재진술 — "이 문제는 결국 OO를 OO 조건 안에서 찾는 문제입니다"</li>
+          <li>접근 후보 비교 — 브루트포스부터 언급하고 최적화 근거 설명</li>
+          <li>선택한 자료구조/알고리즘과 이유 — 왜 그 도구를 골랐는지 한 문장</li>
+          <li>시간/공간복잡도 정리 — Big-O와 트레이드오프 언급</li>
+        </ol>
+        <p class="doc-meta">페이스: 주 3~4문제, 하루 30~40분. 1주차 문자열/배열 → 2주차 스택/큐 → 3~4주차 BFS/DFS → 5주차 DP → 6주차 그리디</p>
+
+        <span class="doc-source">coding-test-practice.md</span>
+      </div>
+    </details>
+  </section>
 
   <section>
     <h2 class="section-title">체크리스트 진행 상황 <span class="count">9개 카테고리</span></h2>
@@ -478,77 +787,77 @@
       </div>
 
       <div class="stop">
-        <div class="stop-marker" style="--pct:75"></div>
+        <div class="stop-marker" style="--pct:100"></div>
         <div class="stop-card">
-          <details open>
+          <details>
             <summary class="stop-head">
               <h3>1 · 이력서 / 경력기술서</h3>
-              <div class="meta"><span class="pct-pill">3 / 4</span><span class="chevron">▸</span></div>
+              <div class="meta"><span class="pct-pill done">4 / 4</span><span class="chevron">▸</span></div>
             </summary>
-            <div class="bar"><i style="width:75%"></i></div>
+            <div class="bar"><i style="width:100%"></i></div>
             <ul class="item-list">
               <li class="done"><span class="box"></span><span class="txt">정량 성과 → 정성적 스코프/영향 중심으로 방향 전환</span></li>
               <li class="done"><span class="box"></span><span class="txt">겹치는 재직기간(호주 시스템 구축) 정리</span></li>
               <li class="done"><span class="box"></span><span class="txt">재입사(2025.11) 사유 답변안 정리</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">원티드/리멤버 등 이력서 빌더 동기화<span class="note">플랫폼마다 포맷 달라 복붙만으로 안 될 수 있음</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">원티드/리멤버 등 이력서 빌더 동기화 초안 완료<span class="note">실제 플랫폼 붙여넣기는 본인 확인 필요</span></span></li>
             </ul>
           </details>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-marker" style="--pct:40"></div>
         <div class="stop-card">
-          <details>
+          <details open>
             <summary class="stop-head">
               <h3>2 · 기술 인터뷰 준비</h3>
-              <div class="meta"><span class="pct-pill">0 / 5</span><span class="chevron">▸</span></div>
+              <div class="meta"><span class="pct-pill">2 / 5</span><span class="chevron">▸</span></div>
             </summary>
-            <div class="bar"><i style="width:0%"></i></div>
+            <div class="bar"><i style="width:40%"></i></div>
             <ul class="item-list">
-              <li class="pending"><span class="box"></span><span class="txt">CS 기본기 (네트워크 · OS · DB)</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">Spring/Java 심화 (Batch, MyBatis vs JPA, 트랜잭션 전파)</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">시스템 설계 — Fitness In Service·커머스웨어 사례 기반</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">코딩테스트 — 프로그래머스/백준<span class="note">상세 계획 → study-plan.md</span></span></li>
-              <li class="pending"><span class="box"></span><span class="txt">AI 활용 관련 질문 대비 (멀티 에이전트 워크플로우 1분 설명)</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">CS 기본기 (네트워크 · OS · DB)<span class="note">답변 초안 완료, 소리 내어 설명 연습 남음</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">Spring/Java 심화 (Batch, MyBatis vs JPA, 트랜잭션 전파)</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">시스템 설계 — Fitness In Service·커머스웨어 사례 기반<span class="note">연습 틀 완료, 실전 연습 남음</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">코딩테스트 — 프로그래머스/백준<span class="note">CJ 출제 유형 리서치 완료, 실전 문제풀이 남음 → study-plan.md</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">AI 활용 관련 질문 대비 (멀티 에이전트 워크플로우 1분 설명)</span></li>
             </ul>
           </details>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-marker" style="--pct:33"></div>
+        <div class="stop-marker" style="--pct:100"></div>
         <div class="stop-card">
           <details>
             <summary class="stop-head">
               <h3>3 · 타겟팅 &amp; 회사 리서치</h3>
-              <div class="meta"><span class="pct-pill">1 / 3</span><span class="chevron">▸</span></div>
+              <div class="meta"><span class="pct-pill done">3 / 3</span><span class="chevron">▸</span></div>
             </summary>
-            <div class="bar"><i style="width:33%"></i></div>
+            <div class="bar"><i style="width:100%"></i></div>
             <ul class="item-list">
               <li class="done"><span class="box"></span><span class="txt">방향 결정 — 이커머스 유지, 규모·처우 상승</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">공고 스캔 (원티드/로켓펀치/리멤버) — 지원 우선순위 리스트업</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">타겟 회사 기술 블로그 최근 글 1~2개씩 읽기</span></li>
+              <li class="done"><span class="box"></span><span class="txt">공고 스캔 1차 완료 — CJ올리브네트웍스 CJ ONE 백엔드 최우선 발견</span></li>
+              <li class="done"><span class="box"></span><span class="txt">타겟 회사 기술 블로그 최근 글 리서치 완료</span></li>
             </ul>
           </details>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-marker" style="--pct:60"></div>
+        <div class="stop-marker" style="--pct:100"></div>
         <div class="stop-card">
-          <details open>
+          <details>
             <summary class="stop-head">
               <h3>4 · 온라인 프레즌스 마무리</h3>
-              <div class="meta"><span class="pct-pill">3 / 5</span><span class="chevron">▸</span></div>
+              <div class="meta"><span class="pct-pill done">5 / 5</span><span class="chevron">▸</span></div>
             </summary>
-            <div class="bar"><i style="width:60%"></i></div>
+            <div class="bar"><i style="width:100%"></i></div>
             <ul class="item-list">
               <li class="done"><span class="box"></span><span class="txt">GitHub 프로필 README 등록</span></li>
               <li class="done"><span class="box"></span><span class="txt">Showcase repo 생성 + README 푸시 — <a class="repo-link" href="https://github.com/wlsdlstjdwls/fitness-in-service-showcase" target="_blank" rel="noopener">fitness-in-service-showcase</a></span></li>
               <li class="done"><span class="box"></span><span class="txt">위 repo 프로필 pin 처리</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">LinkedIn 프로필 최신화</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">기술 블로그(70만+ 조회) 최근 활동 확인</span></li>
+              <li class="done"><span class="box"></span><span class="txt">LinkedIn 프로필 갱신 초안 완료<span class="note">실제 반영은 본인 확인 필요</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">기술 블로그(70만+ 조회) 활동 확인 완료<span class="note">최근 2주 15~16개 글, 매우 활발</span></span></li>
             </ul>
           </details>
         </div>
@@ -582,25 +891,25 @@
             <div class="bar"><i style="width:50%"></i></div>
             <ul class="item-list">
               <li class="done"><span class="box"></span><span class="txt">지원 트래커 생성 — application-tracker.md</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">서류 합격 후 면접 후기(잡플래닛·블라인드) 확인</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">서류 합격 후 면접 후기 확인<span class="note">CJ올리브네트웍스·신세계아이앤씨·롯데이노베이트는 마감 임박 등 이유로 선반영 완료, 현대 계열은 회사명 확인 후 보류</span></span></li>
             </ul>
           </details>
         </div>
       </div>
 
       <div class="stop">
-        <div class="stop-marker" style="--pct:0"></div>
+        <div class="stop-marker" style="--pct:67"></div>
         <div class="stop-card">
           <details>
             <summary class="stop-head">
               <h3>7 · 처우 협상</h3>
-              <div class="meta"><span class="pct-pill">0 / 3</span><span class="chevron">▸</span></div>
+              <div class="meta"><span class="pct-pill">2 / 3</span><span class="chevron">▸</span></div>
             </summary>
-            <div class="bar"><i style="width:0%"></i></div>
+            <div class="bar"><i style="width:67%"></i></div>
             <ul class="item-list">
-              <li class="pending"><span class="box"></span><span class="txt">현재 연봉/처우 명확히 정리</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">희망 연봉 레인지 설정</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">복수 오퍼 비교 기준 정하기</span></li>
+              <li class="done"><span class="box"></span><span class="txt">현재 연봉/처우 명확히 정리<span class="note">comp-notes-private.md, 비공개</span></span></li>
+              <li class="done"><span class="box"></span><span class="txt">희망 연봉 레인지 설정 — 6,500만~7,000만, 목표 6,750만</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">복수 오퍼 비교 기준 정하기<span class="note">기준표 완료 → offer-comparison-framework.md, 실제 오퍼 나오면 적용</span></span></li>
             </ul>
           </details>
         </div>
@@ -616,8 +925,8 @@
             </summary>
             <div class="bar"><i style="width:0%"></i></div>
             <ul class="item-list">
-              <li class="pending"><span class="box"></span><span class="txt">평판조회(레퍼런스체크) 대비</span></li>
-              <li class="pending"><span class="box"></span><span class="txt">퇴사 통보 시점 · 인수인계 계획</span></li>
+              <li class="pending"><span class="box"></span><span class="txt">평판조회(레퍼런스체크) 대비<span class="note">전략 정리 완료 → offboarding-guide.md, 실제 동료 언질만 남음</span></span></li>
+              <li class="pending"><span class="box"></span><span class="txt">퇴사 통보 시점 · 인수인계 계획<span class="note">재입사 이력 있어 관계 관리 특히 신경 — 가이드 완료</span></span></li>
               <li class="pending"><span class="box"></span><span class="txt">회사 코드/문서 반출 금지 재확인</span></li>
             </ul>
           </details>
@@ -640,16 +949,17 @@
   <section>
     <h2 class="section-title">타겟 회사 <span class="count">target-companies.md</span></h2>
     <div class="hyundai-note">
-      <strong>현대백화점 커넥션</strong> — career-description에 "현대백화점 NCP 구축(더현대·투홈 플랫폼 통합)" 이력이 이미 있음. 현대이지웨어·현대홈쇼핑 계열 IT 지원 시 가장 구체적인 근거가 되므로 최우선 후보.
+      <strong>CJ올리브네트웍스 지원 진행 중</strong> — CJ ONE 백엔드, 마감 2026.07.31. 경력요건 정확히 부합, Kubernetes만 유일한 갭. 자소서·CFT·코딩테스트 준비 대부분 완료 → 위 "CJ올리브네트웍스 전형 단계별 준비 현황" 섹션 참고.
     </div>
     <div class="co-groups">
       <div>
         <h4>A. 대기업 그룹 IT 계열사</h4>
         <ul>
+          <li>CJ올리브네트웍스 <span class="tag">CJ ONE, 지원 준비중</span></li>
+          <li>롯데멤버스 <span class="tag">엘포인트/엘페이, CJ ONE과 동일 도메인</span></li>
           <li>신세계아이앤씨 <span class="tag">SSG닷컴</span></li>
-          <li>롯데정보통신 <span class="tag">롯데온</span></li>
-          <li>현대이지웨어 / 현대홈쇼핑 계열 <span class="tag">본인 이력 직결</span></li>
-          <li>CJ올리브네트웍스 <span class="tag">올리브영</span></li>
+          <li>롯데이노베이트 <span class="tag">구 롯데정보통신, 롯데온</span></li>
+          <li>현대이지웰 <span class="tag">현대백화점그룹 복지몰, 본인 이력 직결</span></li>
           <li>GS ITM <span class="tag">GS리테일</span></li>
           <li>삼성SDS <span class="tag">대형 SI</span></li>
           <li>LG CNS</li>
@@ -683,7 +993,9 @@
           <tr><th>회사</th><th>공고일</th><th>지원일</th><th>현재 단계</th><th>결과</th><th>비고</th></tr>
         </thead>
         <tbody>
-          <tr><td>현대이지웨어 / 현대홈쇼핑 계열 IT</td><td>-</td><td>-</td><td>-</td><td>-</td><td>현대백화점 NCP 구축 이력과 직결 — 우선순위 높음</td></tr>
+          <tr><td>CJ올리브네트웍스 (CJ ONE 백엔드)</td><td>2026.06.16</td><td>-</td><td>서류 준비 중<br><span style="color:var(--muted);font-size:0.8em">제출 목표 07.27~28</span></td><td>-</td><td>마감 07.31, 경력요건 부합. Kubernetes 갭 방어 논리 준비 완료</td></tr>
+          <tr><td>현대이지웰</td><td>-</td><td>-</td><td>-</td><td>-</td><td>현대백화점 NCP 구축 이력과 직결 — 우선순위 높음</td></tr>
+          <tr><td>롯데멤버스 (엘포인트/엘페이)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>CJ ONE과 거의 동일한 도메인 — 지원 논리 재사용 가능</td></tr>
           <tr><td>신세계아이앤씨</td><td>-</td><td>-</td><td>-</td><td>-</td><td>SSG닷컴 등 그룹 커머스 시스템</td></tr>
         </tbody>
       </table>
@@ -731,6 +1043,6 @@
     </div>
   </section>
 
-  <footer>career-move 로컬 대시보드 · private repo · 연봉 등 민감 수치는 별도 관리</footer>
+  <footer>career-move 로컬 대시보드 · private repo · 연봉 등 민감 수치는 별도 관리 · 2026.07.21 업데이트</footer>
 
 </div>
